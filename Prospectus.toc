@@ -1,0 +1,48 @@
+\contentsline {chapter}{\numberline {1}Quaternions}{6}
+\contentsline {section}{\numberline {1.1}Quaternion Algebra}{6}
+\contentsline {subsection}{\numberline {1.1.1}Addition and Multiplication}{7}
+\contentsline {subsection}{\numberline {1.1.2}Conjugate, Norm, and Inverse}{8}
+\contentsline {section}{\numberline {1.2}Geometric Representation of Quaternions}{8}
+\contentsline {subsection}{\numberline {1.2.1}Complex Algebra}{8}
+\contentsline {subsection}{\numberline {1.2.2}Complex Rotation Operation}{9}
+\contentsline {subsection}{\numberline {1.2.3}Quaternion Rotation Operation}{10}
+\contentsline {chapter}{\numberline {2}Introduction To Convolutional Neural Networks}{13}
+\contentsline {section}{\numberline {2.1}Basic CNN Components}{13}
+\contentsline {subsection}{\numberline {2.1.1}Convolutional Layer}{14}
+\contentsline {subsection}{\numberline {2.1.2}Pooling Layer}{15}
+\contentsline {subsection}{\numberline {2.1.3}CNN Common Tasks}{16}
+\contentsline {chapter}{\numberline {3}State of the Art}{18}
+\contentsline {section}{\numberline {3.1}Recent Advances in Training Neural Networks}{18}
+\contentsline {subsection}{\numberline {3.1.1}Activation Functions}{18}
+\contentsline {paragraph}{ReLU:}{18}
+\contentsline {paragraph}{LReLU:}{19}
+\contentsline {paragraph}{PReLU:}{19}
+\contentsline {paragraph}{ELU:}{19}
+\contentsline {paragraph}{PELU:}{20}
+\contentsline {subsection}{\numberline {3.1.2}Regularization}{20}
+\contentsline {paragraph}{Dropout:}{20}
+\contentsline {paragraph}{Batch Normalization:}{22}
+\contentsline {subsection}{\numberline {3.1.3}Architecture Improvements}{22}
+\contentsline {section}{\numberline {3.2}Recent Advances in CNNs for Semantic Segmentation}{24}
+\contentsline {subsection}{\numberline {3.2.1}Fully Convolutional Networks for Semantic Segmentation}{25}
+\contentsline {subsection}{\numberline {3.2.2}U-Net: Convolutional Networks for Biomedical Image Segmentation}{26}
+\contentsline {subsection}{\numberline {3.2.3}Learning Iterative Processes with Recurrent Neural Networks to Correct Satellite Image Classification Maps}{28}
+\contentsline {subsection}{\numberline {3.2.4}Semantic Segmentation using Adversarial Networks}{29}
+\contentsline {subsubsection}{Brief overview of GANs}{29}
+\contentsline {subsubsection}{GANs for segmentation}{32}
+\contentsline {section}{\numberline {3.3}Open Questions}{33}
+\contentsline {chapter}{\numberline {4}Work Completed}{34}
+\contentsline {section}{\numberline {4.1}Models}{34}
+\contentsline {section}{\numberline {4.2}Training}{35}
+\contentsline {section}{\numberline {4.3}Experimental Setup}{36}
+\contentsline {section}{\numberline {4.4}Results}{36}
+\contentsline {subsection}{\numberline {4.4.1}Basic Comparison}{36}
+\contentsline {subsection}{\numberline {4.4.2}Applying Batch Normalization}{37}
+\contentsline {chapter}{\numberline {5}Additional Research}{43}
+\contentsline {chapter}{\numberline {6}Timeline}{44}
+\contentsline {section}{\numberline {6.1}Refinement RNN}{44}
+\contentsline {section}{\numberline {6.2}GAN Model}{44}
+\vspace *{\baselineskip }
+\contentsline {chapter}{Bibliography}{45}
+\contentsline {chapter}{List of Figures}{52}
+\contentsline {chapter}{List of Tables}{55}

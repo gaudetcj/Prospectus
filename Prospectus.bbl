@@ -1,0 +1,254 @@
+\newcommand{\etalchar}[1]{$^{#1}$}
+\begin{thebibliography}{MBLAGJ{\etalchar{+}}07}
+
+\bibitem[ACB17]{arjovsky2017wasserstein}
+Martin Arjovsky, Soumith Chintala, and L{\'e}on Bottou.
+\newblock Wasserstein gan.
+\newblock {\em arXiv preprint arXiv:1701.07875}, 2017.
+
+\bibitem[App00]{convolution}
+Apple.
+\newblock Performing convolution operations.
+\newblock
+  https://developer.apple.com/library/content/documentation/Performance/Conceptual/vImage/ConvolutionOperations/ConvolutionOperations.html,
+  2000.
+
+\bibitem[BF13]{ba2013adaptive}
+Jimmy Ba and Brendan Frey.
+\newblock Adaptive dropout for training deep neural networks.
+\newblock In {\em Advances in Neural Information Processing Systems}, pages
+  3084--3092, 2013.
+
+\bibitem[Cho15]{chollet2015}
+François Chollet.
+\newblock keras.
+\newblock https://github.com/fchollet/keras, 2015.
+
+\bibitem[CUH15]{clevert2015fast}
+Djork-Arn{\'e} Clevert, Thomas Unterthiner, and Sepp Hochreiter.
+\newblock Fast and accurate deep network learning by exponential linear units
+  (elus).
+\newblock {\em arXiv preprint arXiv:1511.07289}, 2015.
+
+\bibitem[CXLP13]{chen2013vehicle}
+Xueyun Chen, Shiming Xiang, Cheng-Lin Liu, and Chun-Hong Pan.
+\newblock Vehicle detection in satellite images by parallel deep convolutional
+  neural networks.
+\newblock In {\em Pattern Recognition (ACPR), 2013 2nd IAPR Asian Conference
+  on}, pages 181--185. IEEE, 2013.
+
+\bibitem[DEKLD16]{du2016fused}
+Xianzhi Du, Mostafa El-Khamy, Jungwon Lee, and Larry~S Davis.
+\newblock Fused dnn: A deep neural network fusion approach to fast and robust
+  pedestrian detection.
+\newblock {\em arXiv preprint arXiv:1610.03466}, 2016.
+
+\bibitem[GBB11]{glorot2011deep}
+Xavier Glorot, Antoine Bordes, and Yoshua Bengio.
+\newblock Deep sparse rectifier neural networks.
+\newblock In {\em Aistats}, volume~15, page 275, 2011.
+
+\bibitem[GPAM{\etalchar{+}}14]{goodfellow2014generative}
+Ian Goodfellow, Jean Pouget-Abadie, Mehdi Mirza, Bing Xu, David Warde-Farley,
+  Sherjil Ozair, Aaron Courville, and Yoshua Bengio.
+\newblock Generative adversarial nets.
+\newblock In {\em Advances in neural information processing systems}, pages
+  2672--2680, 2014.
+
+\bibitem[HDWF{\etalchar{+}}17]{havaei2017brain}
+Mohammad Havaei, Axel Davy, David Warde-Farley, Antoine Biard, Aaron Courville,
+  Yoshua Bengio, Chris Pal, Pierre-Marc Jodoin, and Hugo Larochelle.
+\newblock Brain tumor segmentation with deep neural networks.
+\newblock {\em Medical image analysis}, 35:18--31, 2017.
+
+\bibitem[HN{\etalchar{+}}88]{hecht1988theory}
+Robert Hecht-Nielsen et~al.
+\newblock Theory of the backpropagation neural network.
+\newblock {\em Neural Networks}, 1(Supplement-1):445--448, 1988.
+
+\bibitem[HSK{\etalchar{+}}12]{hinton2012improving}
+Geoffrey~E Hinton, Nitish Srivastava, Alex Krizhevsky, Ilya Sutskever, and
+  Ruslan~R Salakhutdinov.
+\newblock Improving neural networks by preventing co-adaptation of feature
+  detectors.
+\newblock {\em arXiv preprint arXiv:1207.0580}, 2012.
+
+\bibitem[HW68]{hubel1968receptive}
+David~H Hubel and Torsten~N Wiesel.
+\newblock Receptive fields and functional architecture of monkey striate
+  cortex.
+\newblock {\em The Journal of physiology}, 195(1):215--243, 1968.
+
+\bibitem[HZRS15a]{he2015deep}
+Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun.
+\newblock Deep residual learning for image recognition.
+\newblock {\em arXiv preprint arXiv:1512.03385}, 2015.
+
+\bibitem[HZRS15b]{he2015delving}
+Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun.
+\newblock Delving deep into rectifiers: Surpassing human-level performance on
+  imagenet classification.
+\newblock In {\em Proceedings of the IEEE International Conference on Computer
+  Vision}, pages 1026--1034, 2015.
+
+\bibitem[IS15]{ioffe2015batch}
+Sergey Ioffe and Christian Szegedy.
+\newblock Batch normalization: Accelerating deep network training by reducing
+  internal covariate shift.
+\newblock {\em arXiv preprint arXiv:1502.03167}, 2015.
+
+\bibitem[Kar13]{maxpooling}
+Andrej Karpathy.
+\newblock Convolutional neural networks (cnns / convnets).
+\newblock http://cs231n.github.io/convolutional-networks/\#pool, 2013.
+
+\bibitem[KPU15]{kainz2015semantic}
+Philipp Kainz, Michael Pfeiffer, and Martin Urschler.
+\newblock Semantic segmentation of colon glands with deep convolutional neural
+  networks and total variation segmentation.
+\newblock {\em arXiv preprint arXiv:1511.06919}, 2015.
+
+\bibitem[KSH12]{krizhevsky2012imagenet}
+Alex Krizhevsky, Ilya Sutskever, and Geoffrey~E Hinton.
+\newblock Imagenet classification with deep convolutional neural networks.
+\newblock In {\em Advances in neural information processing systems}, pages
+  1097--1105, 2012.
+
+\bibitem[LBD{\etalchar{+}}90]{lecun1990handwritten}
+Y~LeCun, B~Boser, JS~Denker, D~Henderson, RE~Howard, W~Hubbard, and LD~Jackel.
+\newblock Handwritten digit recognition with a back-propagation network.
+\newblock In {\em Advances in neural information processing systems 2, NIPS
+  1989}, pages 396--404. Morgan Kaufmann Publishers, 1990.
+
+\bibitem[LCCV16]{luc2016semantic}
+Pauline Luc, Camille Couprie, Soumith Chintala, and Jakob Verbeek.
+\newblock Semantic segmentation using adversarial networks.
+\newblock {\em arXiv preprint arXiv:1611.08408}, 2016.
+
+\bibitem[LCY13]{lin2013network}
+Min Lin, Qiang Chen, and Shuicheng Yan.
+\newblock Network in network.
+\newblock {\em arXiv preprint arXiv:1312.4400}, 2013.
+
+\bibitem[LJH15]{li2015automatic}
+Wen Li, Fucang Jia, and Qingmao Hu.
+\newblock Automatic segmentation of liver tumor in ct images with deep
+  convolutional neural networks.
+\newblock {\em Journal of Computer and Communications}, 3(11):146, 2015.
+
+\bibitem[LPAL15]{lyksborg2015ensemble}
+Mark Lyksborg, Oula Puonti, Mikael Agn, and Rasmus Larsen.
+\newblock An ensemble of 2d convolutional neural networks for tumor
+  segmentation.
+\newblock In {\em Scandinavian Conference on Image Analysis}, pages 201--211.
+  Springer, 2015.
+
+\bibitem[LSD15]{long2015fully}
+Jonathan Long, Evan Shelhamer, and Trevor Darrell.
+\newblock Fully convolutional networks for semantic segmentation.
+\newblock In {\em Proceedings of the IEEE Conference on Computer Vision and
+  Pattern Recognition}, pages 3431--3440, 2015.
+
+\bibitem[MBLAGJ{\etalchar{+}}07]{maldonado2007road}
+Saturnino Maldonado-Bascon, Sergio Lafuente-Arroyo, Pedro Gil-Jimenez, Hilario
+  Gomez-Moreno, and Francisco L{\'o}pez-Ferreras.
+\newblock Road-sign detection and recognition based on support vector machines.
+\newblock {\em IEEE transactions on intelligent transportation systems},
+  8(2):264--278, 2007.
+
+\bibitem[MHN13]{maas2013rectifier}
+Andrew~L Maas, Awni~Y Hannun, and Andrew~Y Ng.
+\newblock Rectifier nonlinearities improve neural network acoustic models.
+\newblock In {\em Proc. ICML}, volume~30, 2013.
+
+\bibitem[MTCA16]{maggiori2016learning}
+Emmanuel Maggiori, Yuliya Tarabalka, Guillaume Charpiat, and Pierre Alliez.
+\newblock Learning iterative processes with recurrent neural networks to
+  correct satellite image classification maps.
+\newblock {\em arXiv preprint arXiv:1608.03440}, 2016.
+
+\bibitem[NH10]{nair2010rectified}
+Vinod Nair and Geoffrey~E Hinton.
+\newblock Rectified linear units improve restricted boltzmann machines.
+\newblock In {\em Proceedings of the 27th International Conference on Machine
+  Learning (ICML-10)}, pages 807--814, 2010.
+
+\bibitem[onsiEs12]{emdata}
+ISBI Challenge:~Segmentation of~neuronal structures~in EM~stacks.
+\newblock Em stacks.
+\newblock http://brainiac2.mit.edu/isbi\_challenge/home, 2012.
+
+\bibitem[QHJ16]{quan2016fusionnet}
+Tran~Minh Quan, David~GC Hilderbrand, and Won-Ki Jeong.
+\newblock Fusionnet: A deep fully residual convolutional neural network for
+  image segmentation in connectomics.
+\newblock {\em arXiv preprint arXiv:1612.05360}, 2016.
+
+\bibitem[RBS13]{ratliff2013characterization}
+Lillian~J Ratliff, Samuel~A Burden, and S~Shankar Sastry.
+\newblock Characterization and computation of local nash equilibria in
+  continuous games.
+\newblock In {\em Communication, Control, and Computing (Allerton), 2013 51st
+  Annual Allerton Conference on}, pages 917--924. IEEE, 2013.
+
+\bibitem[RFB15]{ronneberger2015u}
+Olaf Ronneberger, Philipp Fischer, and Thomas Brox.
+\newblock U-net: Convolutional networks for biomedical image segmentation.
+\newblock In {\em International Conference on Medical Image Computing and
+  Computer-Assisted Intervention}, pages 234--241. Springer, 2015.
+
+\bibitem[RHW85]{rumelhart1985learning}
+David~E Rumelhart, Geoffrey~E Hinton, and Ronald~J Williams.
+\newblock Learning internal representations by error propagation.
+\newblock Technical report, DTIC Document, 1985.
+
+\bibitem[RMC15]{radford2015unsupervised}
+Alec Radford, Luke Metz, and Soumith Chintala.
+\newblock Unsupervised representation learning with deep convolutional
+  generative adversarial networks.
+\newblock {\em arXiv preprint arXiv:1511.06434}, 2015.
+
+\bibitem[SGZ{\etalchar{+}}16]{salimans2016improved}
+Tim Salimans, Ian Goodfellow, Wojciech Zaremba, Vicki Cheung, Alec Radford, and
+  Xi~Chen.
+\newblock Improved techniques for training gans.
+\newblock In {\em Advances in Neural Information Processing Systems}, pages
+  2226--2234, 2016.
+
+\bibitem[SLJ{\etalchar{+}}15]{szegedy2015going}
+Christian Szegedy, Wei Liu, Yangqing Jia, Pierre Sermanet, Scott Reed, Dragomir
+  Anguelov, Dumitru Erhan, Vincent Vanhoucke, and Andrew Rabinovich.
+\newblock Going deeper with convolutions.
+\newblock In {\em Proceedings of the IEEE Conference on Computer Vision and
+  Pattern Recognition}, pages 1--9, 2015.
+
+\bibitem[TGCd16]{trottier2016parametric}
+Ludovic Trottier, Philippe Gigu{\`e}re, and Brahim Chaib-draa.
+\newblock Parametric exponential linear unit for deep convolutional neural
+  networks.
+\newblock {\em arXiv preprint arXiv:1605.09332}, 2016.
+
+\bibitem[TGJ{\etalchar{+}}15]{tompson2015efficient}
+Jonathan Tompson, Ross Goroshin, Arjun Jain, Yann LeCun, and Christoph Bregler.
+\newblock Efficient object localization using convolutional networks.
+\newblock In {\em Proceedings of the IEEE Conference on Computer Vision and
+  Pattern Recognition}, pages 648--656, 2015.
+
+\bibitem[WM13]{wang2013fast}
+Sida~I Wang and Christopher~D Manning.
+\newblock Fast dropout training.
+\newblock In {\em ICML (2)}, pages 118--126, 2013.
+
+\bibitem[XM17]{mao2017lsgan}
+Haoran Xie Raymond Y.K. Lau Zhen~Wang Xudong~Mao, Qing~Li.
+\newblock Least squares generative adversarial networks.
+\newblock {\em arXiv preprint arXiv:1611.04076}, 2017.
+
+\bibitem[ZRM{\etalchar{+}}13]{zeiler2013rectified}
+Matthew~D Zeiler, M~Ranzato, Rajat Monga, Min Mao, Kun Yang, Quoc~Viet Le,
+  Patrick Nguyen, Alan Senior, Vincent Vanhoucke, Jeffrey Dean, et~al.
+\newblock On rectified linear units for speech processing.
+\newblock In {\em 2013 IEEE International Conference on Acoustics, Speech and
+  Signal Processing}, pages 3517--3521. IEEE, 2013.
+
+\end{thebibliography}

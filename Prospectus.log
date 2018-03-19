@@ -1,0 +1,537 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500) (preloaded format=pdflatex 2018.1.27)  18 MAR 2018 17:29
+entering extended mode
+**./Prospectus.tex
+(Prospectus.tex
+LaTeX2e <2017-04-15>
+Babel <3.17> and hyphenation patterns for 75 language(s) loaded.
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\report.cls"
+Document Class: report 2014/09/29 v1.4h Standard LaTeX document class
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\size12.clo"
+File: size12.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@chapter=\count80
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@subparagraph=\count85
+\c@figure=\count86
+\c@table=\count87
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\graphicx.sty"
+Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\keyval.sty"
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\graphics.sty"
+Package: graphics 2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\trig.sty"
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics-cfg\graphics.cfg"
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 99.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics-def\pdftex.def"
+File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen103
+\Gin@req@width=\dimen104
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amsmath.sty"
+Package: amsmath 2017/09/02 v2.17a AMS math features
+\@mathmargin=\skip43
+
+For additional information on amsmath, use the `?' option.
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amstext.sty"
+Package: amstext 2000/06/29 v2.01 AMS text
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amsgen.sty"
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks15
+\ex@=\dimen105
+))
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amsbsy.sty"
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen106
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amsopn.sty"
+Package: amsopn 2016/03/08 v2.02 operator names
+)
+\inf@bad=\count88
+LaTeX Info: Redefining \frac on input line 213.
+\uproot@=\count89
+\leftroot@=\count90
+LaTeX Info: Redefining \overline on input line 375.
+\classnum@=\count91
+\DOTSCASE@=\count92
+LaTeX Info: Redefining \ldots on input line 472.
+LaTeX Info: Redefining \dots on input line 475.
+LaTeX Info: Redefining \cdots on input line 596.
+\Mathstrutbox@=\box26
+\strutbox@=\box27
+\big@size=\dimen107
+LaTeX Font Info:    Redeclaring font encoding OML on input line 712.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
+\macc@depth=\count93
+\c@MaxMatrixCols=\count94
+\dotsspace@=\muskip10
+\c@parentequation=\count95
+\dspbrk@lvl=\count96
+\tag@help=\toks16
+\row@=\count97
+\column@=\count98
+\maxfields@=\count99
+\andhelp@=\toks17
+\eqnshift@=\dimen108
+\alignsep@=\dimen109
+\tagshift@=\dimen110
+\tagwidth@=\dimen111
+\totwidth@=\dimen112
+\lineht@=\dimen113
+\@envbody=\toks18
+\multlinegap=\skip44
+\multlinetaggap=\skip45
+\mathdisplay@stack=\toks19
+LaTeX Info: Redefining \[ on input line 2817.
+LaTeX Info: Redefining \] on input line 2818.
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amscls\amsthm.sty"
+Package: amsthm 2017/10/31 v2.20.4
+\thm@style=\toks20
+\thm@bodyfont=\toks21
+\thm@headfont=\toks22
+\thm@notefont=\toks23
+\thm@headpunct=\toks24
+\thm@preskip=\skip46
+\thm@postskip=\skip47
+\thm@headsep=\skip48
+\dth@everypar=\toks25
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\amsfonts.sty"
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\caption\caption.sty"
+Package: caption 2016/02/21 v3.3-144 Customizing captions (AR)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\caption\caption3.sty"
+Package: caption3 2016/05/22 v1.7-166 caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 67.
+\captionmargin=\dimen114
+\captionmargin@=\dimen115
+\captionwidth=\dimen116
+\caption@tempdima=\dimen117
+\caption@indent=\dimen118
+\caption@parindent=\dimen119
+\caption@hangindent=\dimen120
+)
+\c@ContinuedFloat=\count100
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\caption\subcaption.sty"
+Package: subcaption 2016/05/22 v1.1-161 Sub-captions (AR)
+\c@subfigure=\count101
+\c@subtable=\count102
+)
+\c@theorem=\count103
+ (Prospectus.aux)
+\openout1 = `Prospectus.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count104
+\scratchdimen=\dimen121
+\scratchbox=\box28
+\nofMPsegments=\count105
+\nofMParguments=\count106
+\everyMPshowfont=\toks26
+\MPscratchCnt=\count107
+\MPscratchDim=\dimen122
+\MPnumerator=\count108
+\makeMPintoPDFobject=\count109
+\everyMPtoPDFconversion=\toks27
+) ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\oberdiek\epstopdf-base.sty"
+Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\infwarerr.sty"
+Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\oberdiek\grfext.sty"
+Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\kvdefinekeys.sty"
+Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\ltxcmds.sty"
+Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+)))
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\oberdiek\kvoptions.sty"
+Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\kvsetkeys.sty"
+Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\etexcmds.sty"
+Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\ifluatex.sty"
+Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\pdftexcmds.sty"
+Package: pdftexcmds 2017/03/19 v0.25 Utility functions of pdfTeX for LuaTeX (HO)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\ifpdf.sty"
+Package: ifpdf 2017/03/15 v3.2 Provides the ifpdf switch
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 438.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPEG,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 456.
+)
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: End \AtBeginDocument code.
+ (TitlePage.tex [1
+
+{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]) [1
+
+] [2
+
+] (Prospectus.toc
+LaTeX Font Info:    Try loading font information for U+msa on input line 2.
+ ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 2.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+) [3
+
+]
+Overfull \hbox (5.20149pt too wide) in paragraph at lines 29--29
+ [][] []\OT1/cmr/m/n/12 Learning It-er-a-tive Pro-cesses with Re-cur-rent Neu-ral Net- 
+ []
+
+[4])
+\tf@toc=\write3
+\openout3 = `Prospectus.toc'.
+
+ [5] (IntroductionToQuaternions.tex
+Chapter 1.
+[6
+
+
+] [7]
+Overfull \hbox (3.25577pt too wide) in paragraph at lines 91--91
+[]\OT1/cmr/bx/n/17.28 Geometric Rep-re-sen-ta-tion of Quater-nions 
+ []
+
+[8] [9]
+<figures/r3.png, id=44, 611.28375pt x 289.83281pt>
+File: figures/r3.png Graphic file (type png)
+<use figures/r3.png>
+Package pdftex.def Info: figures/r3.png  used on input line 153.
+(pdftex.def)             Requested size: 390.0pt x 184.91301pt.
+ [10 <./figures/r3.png>] [11]) (IntroductionToCnns.tex [12]
+Chapter 2.
+<figures/lenet5.png, id=58, 1189.44376pt x 338.01282pt>
+File: figures/lenet5.png Graphic file (type png)
+<use figures/lenet5.png>
+Package pdftex.def Info: figures/lenet5.png  used on input line 11.
+(pdftex.def)             Requested size: 370.49881pt x 105.28317pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[13
+
+] [14 <./figures/lenet5.png>]
+<figures/convolution.png, id=66, 599.99156pt x 409.53pt>
+File: figures/convolution.png Graphic file (type png)
+<use figures/convolution.png>
+Package pdftex.def Info: figures/convolution.png  used on input line 47.
+(pdftex.def)             Requested size: 370.49881pt x 252.89365pt.
+ [15 <./figures/convolution.png>]
+<figures/maxpool.png, id=71, 876.27374pt x 463.7325pt>
+File: figures/maxpool.png Graphic file (type png)
+<use figures/maxpool.png>
+Package pdftex.def Info: figures/maxpool.png  used on input line 68.
+(pdftex.def)             Requested size: 370.49881pt x 196.07536pt.
+ [16 <./figures/maxpool.png>]) (StateOfTheArt.tex
+[17]
+Chapter 3.
+[18
+
+] [19]
+<figures/activations.png, id=86, 825.83531pt x 739.26187pt>
+File: figures/activations.png Graphic file (type png)
+<use figures/activations.png>
+Package pdftex.def Info: figures/activations.png  used on input line 53.
+(pdftex.def)             Requested size: 331.50238pt x 296.74857pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[20] [21 <./figures/activations.png>] [22]
+<figures/inceptionblock.png, id=97, 694.595pt x 367.3725pt>
+File: figures/inceptionblock.png Graphic file (type png)
+<use figures/inceptionblock.png>
+Package pdftex.def Info: figures/inceptionblock.png  used on input line 90.
+(pdftex.def)             Requested size: 390.0pt x 206.27654pt.
+<figures/resblock.png, id=98, 406.51875pt x 204.765pt>
+File: figures/resblock.png Graphic file (type png)
+<use figures/resblock.png>
+Package pdftex.def Info: figures/resblock.png  used on input line 98.
+(pdftex.def)             Requested size: 312.00119pt x 157.16023pt.
+ [23 <./figures/inceptionblock.png>]
+<figures/padding_strides_transposed.png, id=102, 297.36093pt x 338.01282pt>
+File: figures/padding_strides_transposed.png Graphic file (type png)
+<use figures/padding_strides_transposed.png>
+Package pdftex.def Info: figures/padding_strides_transposed.png  used on input line 111.
+(pdftex.def)             Requested size: 195.0pt x 221.6553pt.
+<figures/fcn1.png, id=103, 400.49625pt x 220.57407pt>
+File: figures/fcn1.png Graphic file (type png)
+<use figures/fcn1.png>
+Package pdftex.def Info: figures/fcn1.png  used on input line 117.
+(pdftex.def)             Requested size: 350.99762pt x 193.32492pt.
+<figures/fcn2.png, id=104, 875.52094pt x 380.92313pt>
+File: figures/fcn2.png Graphic file (type png)
+<use figures/fcn2.png>
+Package pdftex.def Info: figures/fcn2.png  used on input line 124.
+(pdftex.def)             Requested size: 390.0pt x 169.68172pt.
+ [24 <./figures/resblock.png>]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[25 <./figures/padding_strides_transposed.png>]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<figures/unet.png, id=114, 677.53125pt x 465.23813pt>
+File: figures/unet.png Graphic file (type png)
+<use figures/unet.png>
+Package pdftex.def Info: figures/unet.png  used on input line 133.
+(pdftex.def)             Requested size: 390.0pt x 267.808pt.
+[26 <./figures/fcn1.png>]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Overfull \hbox (4.71968pt too wide) in paragraph at lines 139--139
+[]\OT1/cmr/bx/n/14.4 Learning It-er-a-tive Pro-cesses with Re-cur-rent Neu-
+ []
+
+[27 <./figures/fcn2.png>] [28 <./figures/unet.png>]
+<figures/cnnrnn1.png, id=127, 593.21625pt x 274.02374pt>
+File: figures/cnnrnn1.png Graphic file (type png)
+<use figures/cnnrnn1.png>
+Package pdftex.def Info: figures/cnnrnn1.png  used on input line 158.
+(pdftex.def)             Requested size: 390.0pt x 180.15796pt.
+<figures/cnnrnn2.png, id=128, 966.61125pt x 204.765pt>
+File: figures/cnnrnn2.png Graphic file (type png)
+<use figures/cnnrnn2.png>
+Package pdftex.def Info: figures/cnnrnn2.png  used on input line 164.
+(pdftex.def)             Requested size: 390.0pt x 82.61691pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[29] [30 <./figures/cnnrnn1.png> <./figures/cnnrnn2.png>] [31] [32]
+<figures/seggan.png, id=144, 776.9025pt x 368.87813pt>
+File: figures/seggan.png Graphic file (type png)
+<use figures/seggan.png>
+Package pdftex.def Info: figures/seggan.png  used on input line 191.
+(pdftex.def)             Requested size: 390.0pt x 185.17595pt.
+) (Proposal.tex [33 <./figures/seggan.png>]
+Chapter 4.
+[34
+
+]
+<figures/mymodel.png, id=152, 228.855pt x 691.83469pt>
+File: figures/mymodel.png Graphic file (type png)
+<use figures/mymodel.png>
+Package pdftex.def Info: figures/mymodel.png  used on input line 11.
+(pdftex.def)             Requested size: 155.99762pt x 471.60258pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<figures/basic.png, id=153, 283.81032pt x 508.14844pt>
+File: figures/basic.png Graphic file (type png)
+<use figures/basic.png>
+Package pdftex.def Info: figures/basic.png  used on input line 19.
+(pdftex.def)             Requested size: 152.09976pt x 272.33357pt.
+<figures/multiscale.png, id=154, 395.22656pt x 466.74374pt>
+File: figures/multiscale.png Graphic file (type png)
+<use figures/multiscale.png>
+Package pdftex.def Info: figures/multiscale.png  used on input line 26.
+(pdftex.def)             Requested size: 230.09857pt x 271.7371pt.
+<figures/dconv.png, id=155, 112.92188pt x 130.98938pt>
+File: figures/dconv.png Graphic file (type png)
+<use figures/dconv.png>
+Package pdftex.def Info: figures/dconv.png  used on input line 33.
+(pdftex.def)             Requested size: 97.5pt x 113.10637pt.
+<figures/uconv.png, id=156, 112.16907pt x 130.98938pt>
+File: figures/uconv.png Graphic file (type png)
+<use figures/uconv.png>
+Package pdftex.def Info: figures/uconv.png  used on input line 40.
+(pdftex.def)             Requested size: 97.5pt x 113.86188pt.
+[35] [36]
+<figures/baseline_loss.png, id=164, 1734.48pt x 977.8131pt>
+File: figures/baseline_loss.png Graphic file (type png)
+<use figures/baseline_loss.png>
+Package pdftex.def Info: figures/baseline_loss.png  used on input line 62.
+(pdftex.def)             Requested size: 390.0pt x 219.84924pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<figures/baseline.png, id=165, 1734.48pt x 977.8131pt>
+File: figures/baseline.png Graphic file (type png)
+<use figures/baseline.png>
+Package pdftex.def Info: figures/baseline.png  used on input line 68.
+(pdftex.def)             Requested size: 390.0pt x 219.84924pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<figures/batchnorm_loss.png, id=166, 1734.48pt x 977.8131pt>
+File: figures/batchnorm_loss.png Graphic file (type png)
+<use figures/batchnorm_loss.png>
+Package pdftex.def Info: figures/batchnorm_loss.png  used on input line 78.
+(pdftex.def)             Requested size: 390.0pt x 219.84924pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<figures/batchnorm.png, id=167, 1734.48pt x 977.8131pt>
+File: figures/batchnorm.png Graphic file (type png)
+<use figures/batchnorm.png>
+Package pdftex.def Info: figures/batchnorm.png  used on input line 84.
+(pdftex.def)             Requested size: 390.0pt x 219.84924pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[37] [38 <./figures/mymodel.png>] [39 <./figures/basic.png> <./figures/multiscale.png> <./figures/dconv.png> <./figures/
+uconv.png>] [40 <./figures/baseline_loss.png>] [41 <./figures/baseline.png>] [42 <./figures/batchnorm_loss.png> <./figur
+es/batchnorm.png>]
+Chapter 5.
+[43
+
+]
+Chapter 6.
+) [44
+
+] (Prospectus.bbl [45]
+Underfull \hbox (badness 1077) in paragraph at lines 5--8
+[]\OT1/cmr/m/n/12 Martin Ar-jovsky, Soumith Chin-tala, and Leon Bot-tou.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 10--15
+[]\OT1/cmr/m/n/12 Apple.  Per-form-ing con-vo-lu-tion op-er-a-tions.
+ []
+
+
+Overfull \hbox (459.44139pt too wide) in paragraph at lines 10--15
+\OT1/cmr/m/n/12 https://developer.apple.com/library/content/documentation/Performance/Conceptual/vImage/ConvolutionOpera
+tions/ConvolutionOperations.html,
+ []
+
+Missing character: There is no Ã in font cmr12!
+Missing character: There is no § in font cmr12!
+[46
+
+] [47]
+Underfull \hbox (badness 10000) in paragraph at lines 101--104
+\OT1/cmr/m/n/12 / con-vnets).  http://cs231n.github.io/convolutional-
+ []
+
+[48]
+Underfull \hbox (badness 1205) in paragraph at lines 153--158
+\OT1/cmr/m/n/12 dro Gil-Jimenez, Hi-lario Gomez-Moreno, and Fran-cisco
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 177--180
+[]\OT1/cmr/m/n/12 ISBI Chal-lenge: Seg-men-ta-tion of neu-ronal
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 177--180
+\OT1/cmr/m/n/12 struc-tures in EM stacks.  Em stacks.
+ []
+
+[49] [50]) [51] (Prospectus.lof [52
+
+
+] [53])
+\tf@lof=\write4
+\openout4 = `Prospectus.lof'.
+
+ [54] (Prospectus.lot)
+\tf@lot=\write5
+\openout5 = `Prospectus.lot'.
+
+ [55
+
+
+] (Prospectus.aux) ) 
+Here is how much of TeX's memory you used:
+ 3611 strings out of 493307
+ 55485 string characters out of 3136230
+ 116979 words of memory out of 3000000
+ 7074 multiletter control sequences out of 15000+200000
+ 13756 words of font info for 49 fonts, out of 3000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 41i,10n,39p,1627b,448s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files (x86)
+/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/c
+m/cmcsc10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files (x86)/MiKTe
+X 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.
+pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts
+/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Progr
+am Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/publi
+c/amsfonts/cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Program Files (
+x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on Prospectus.pdf (56 pages, 3848146 bytes).
+PDF statistics:
+ 281 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 116 words of extra memory for PDF output out of 10000 (max. 10000000)
+
