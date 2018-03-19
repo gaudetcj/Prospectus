@@ -1,0 +1,105 @@
+\chapter{Appendix}
+\section{The Generalized Quaternion Chain Rule for a Real-Valued Function}\label{a:diff}
+We start by specifying the Jacobian.
+Let $L$ be a real valued loss function and $q$ be a quaternion variable such that $q = a+\textit{i}~b+\textit{j}~c+\textit{k}~d$ where $a,b,c,d \in \mathbb{R}$ then,
+\begin{align}
+\nabla_L(q) &= \frac{\partial L}{\partial q} = \frac{\partial L}{\partial a} + \textit{i}~\frac{\partial L}{\partial b} + \textit{j}~\frac{\partial L}{\partial c} + \textit{k}~\frac{\partial L}{\partial d} \\ \nonumber
+&= \frac{\partial L}{\partial \mathbb{R}(q)} + \textit{i}~\frac{\partial L}{\partial \mathbb{I}(q)} + \textit{j}~\frac{\partial L}{\partial \mathbb{J}(q)} + \textit{k}~\frac{\partial L}{\partial \mathbb{K}(q)} \\ \nonumber
+&= \mathbb{R}(\nabla_L(q)) + \mathbb{I}(\nabla_L(q)) + \mathbb{J}(\nabla_L(q)) + \mathbb{K}(\nabla_L(q)) 
+\label{eq:diff1}
+\end{align}
+Now let $g = m+\textit{i}~n+\textit{j}~o+\textit{k}~p$ be another quaternion variable where $q$ can be expressed in terms of $g$ and $m,n,o,p \in \mathbb{R}$ we then have,
+\begin{align}
+\nabla_L(q) &= \frac{\partial L}{\partial g} = \frac{\partial L}{\partial m} + \textit{i}~\frac{\partial L}{\partial n} + \textit{j}~\frac{\partial L}{\partial o} + \textit{k}~\frac{\partial L}{\partial p} \\ \nonumber
+&= \frac{\partial L}{\partial a}\frac{\partial a}{\partial m} + \frac{\partial L}{\partial b}\frac{\partial b}{\partial m} + \frac{\partial L}{\partial c}\frac{\partial c}{\partial m} + \frac{\partial L}{\partial d}\frac{\partial d}{\partial m} \\ \nonumber
+&~~+ \textit{i}~\left( \frac{\partial L}{\partial a}\frac{\partial a}{\partial n} + \frac{\partial L}{\partial b}\frac{\partial b}{\partial n} + \frac{\partial L}{\partial c}\frac{\partial c}{\partial n} + \frac{\partial L}{\partial d}\frac{\partial d}{\partial n} \right) \\ \nonumber
+&~~+ \textit{j}~\left( \frac{\partial L}{\partial a}\frac{\partial a}{\partial o} + \frac{\partial L}{\partial b}\frac{\partial b}{\partial o} + \frac{\partial L}{\partial c}\frac{\partial c}{\partial o} + \frac{\partial L}{\partial d}\frac{\partial d}{\partial o} \right) \\ \nonumber
+&~~+ \textit{k}~\left( \frac{\partial L}{\partial a}\frac{\partial a}{\partial p} + \frac{\partial L}{\partial b}\frac{\partial b}{\partial p} + \frac{\partial L}{\partial c}\frac{\partial c}{\partial p} + \frac{\partial L}{\partial d}\frac{\partial d}{\partial p} \right) \\ \nonumber
+&= \frac{\partial L}{\partial a} \left( \frac{\partial a}{\partial m} + \textit{i}~\frac{\partial a}{\partial n} + \textit{j}~\frac{\partial a}{\partial o} + \textit{k}~\frac{\partial a}{\partial p} \right) \\ \nonumber
+&~~+ \frac{\partial L}{\partial b} \left( \frac{\partial b}{\partial m} + \textit{i}~\frac{\partial b}{\partial n} + \textit{j}~\frac{\partial b}{\partial o} + \textit{k}~\frac{\partial b}{\partial p} \right) \\ \nonumber
+&~~+ \frac{\partial L}{\partial c} \left( \frac{\partial c}{\partial m} + \textit{i}~\frac{\partial c}{\partial n} + \textit{j}~\frac{\partial c}{\partial o} + \textit{k}~\frac{\partial c}{\partial p} \right) \\ \nonumber
+&~~+ \frac{\partial L}{\partial d} \left( \frac{\partial d}{\partial m} + \textit{i}~\frac{\partial d}{\partial n} + \textit{j}~\frac{\partial d}{\partial o} + \textit{k}~\frac{\partial d}{\partial p} \right) \\ \nonumber
+&= \frac{\partial L}{\partial \mathbb{R}(q)} \left( \frac{\partial a}{\partial m} + \textit{i}~\frac{\partial a}{\partial n} + \textit{j}~\frac{\partial a}{\partial o} + \textit{k}~\frac{\partial a}{\partial p} \right) \\ \nonumber
+&~~+ \frac{\partial L}{\partial \mathbb{I}(q)} \left( \frac{\partial b}{\partial m} + \textit{i}~\frac{\partial b}{\partial n} + \textit{j}~\frac{\partial b}{\partial o} + \textit{k}~\frac{\partial b}{\partial p} \right) \\ \nonumber
+&~~+ \frac{\partial L}{\partial \mathbb{J}(q)} \left( \frac{\partial c}{\partial m} + \textit{i}~\frac{\partial c}{\partial n} + \textit{j}~\frac{\partial c}{\partial o} + \textit{k}~\frac{\partial c}{\partial p} \right) \\ \nonumber
+&~~+ \frac{\partial L}{\partial \mathbb{K}(q)} \left( \frac{\partial d}{\partial m} + \textit{i}~\frac{\partial d}{\partial n} + \textit{j}~\frac{\partial d}{\partial o} + \textit{k}~\frac{\partial d}{\partial p} \right) \\ \nonumber
+&= \mathbb{R}(\nabla_L(q)) \left( \frac{\partial a}{\partial m} + \textit{i}~\frac{\partial a}{\partial n} + \textit{j}~\frac{\partial a}{\partial o} + \textit{k}~\frac{\partial a}{\partial p} \right) \\ \nonumber
+&~~+ \mathbb{I}(\nabla_L(q)) \left( \frac{\partial b}{\partial m} + \textit{i}~\frac{\partial b}{\partial n} + \textit{j}~\frac{\partial b}{\partial o} + \textit{k}~\frac{\partial b}{\partial p} \right) \\ \nonumber
+&~~+ \mathbb{J}(\nabla_L(q)) \left( \frac{\partial c}{\partial m} + \textit{i}~\frac{\partial c}{\partial n} + \textit{j}~\frac{\partial c}{\partial o} + \textit{k}~\frac{\partial c}{\partial p} \right) \\ \nonumber
+&~~+ \mathbb{K}(\nabla_L(q)) \left( \frac{\partial d}{\partial m} + \textit{i}~\frac{\partial d}{\partial n} + \textit{j}~\frac{\partial d}{\partial o} + \textit{k}~\frac{\partial d}{\partial p} \right)
+\label{eq:diff2}
+\end{align}
+
+
+\section{Whitening a Matrix}\label{a:whitening}
+Let $\textbf{X}$ be an $n$~x~$n$ matrix and $\mbox{cov}(\textbf{X}) = \mathbf{\Sigma}$ is the symmetric covariance matrix of the same size.
+Whitening a matrix linearly decorrelates the input dimensions, meaning that whitening transforms $\textbf{X}$ into $\textbf{Z}$ such that $\mbox{cov}(\textbf{Z}) = \textbf{I}$ where $\textbf{I}$ is the identity matrix \cite{kessy2017optimal}. 
+The matrix $\textbf{Z}$ can be written as:
+\begin{equation}
+\textbf{Z} = \textbf{W}(\textbf{X} - \mu)
+\label{eq:white1}
+\end{equation}
+where $\textbf{W}$ is an $n$~x~$n$ `whitening' matrix. Since $\mbox{cov}(\textbf{Z}) = \textbf{I}$ it follows that:
+\begin{align}
+&\mathbb{E}[\mathbf{Z}\mathbf{Z}^T] = \mathbf{I} \nonumber \\
+&\mathbb{E}[\mathbf{W}(\mathbf{X - \mu})(\mathbf{W}(\mathbf{X} - \mu))^T] = \mathbf{I} \nonumber \\
+&\mathbb{E}[\mathbf{W}(\mathbf{X - \mu})(\mathbf{X} - \mu)^T\mathbf{W}^T] = \mathbf{I} \nonumber \\
+&\mathbf{W}\Sigma\mathbf{W}^T = \mathbf{I} \nonumber \\
+&\mathbf{W}\Sigma\mathbf{W}^T\mathbf{W} = \mathbf{W} \nonumber \\
+&\mathbf{W}^T \mathbf{W} = \mathbf{\Sigma}^{-1} \label{eq:white2}
+\end{align}
+From \eqref{eq:white2} it is clear that the Cholesky decomposition provides a suitable (but not unique) method of finding $\textbf{W}$.
+
+\section{Cholesky Decomposition}
+Cholesky decomposition is an efficient way to implement LU decomposition for symmetric matrices, which allows us to find the square root.
+Consider $\textbf{A}\textbf{X} = \textbf{b}$, $\textbf{A}=[a_{ij}]_{n\times n}$, and $a_{ij} = a_{ji}$, then the Cholesky decomposition of $\textbf{A}$ is given by $\textbf{A} = \textbf{L}\textbf{L}'$ where
+\begin{equation}
+\textbf{L}=
+\begin{bmatrix}
+ l_{11} & 0 & \ldots & 0 \\
+ l_{21} & l_{22} & \ldots & \vdots \\
+ \vdots & \vdots & \ddots & 0 \\
+ l_{n1} & l_{n2} & ... & l_{nn} \\
+\end{bmatrix}
+\label{eq:cholesky1}
+\end{equation}
+Let $l_{ki}$ be the $k^{th}$ row and $i^{th}$ column entry of $\textbf{L}$, then
+
+\[ 
+   l_{ki} = 
+	 \begin{cases} 
+      0, & k < i \\
+      \sqrt{a_{ii} - \sum_{j=1}^{i-1}l^2_{kj}}, & k=i \\
+      \frac{1}{l_{ii}} (a_{ki} - \sum_{j=1}^{i-1}l_{ij}l_{kj}), & i < k 
+   \end{cases}
+\]
+
+\section{4 DOF Independent Normal Distribution}
+Consider the four-dimensional vector $\textbf{Y} = (S,T,U,V)$ which has components that are normally distributed, centered at zero, and independent. 
+Then $S$, $T$, $U$, and $V$ all have density functions
+\begin{equation}
+f_S(x;\sigma) = f_T(x;\sigma) = f_U(x;\sigma) = f_V(x;\sigma) = \frac{e^{-x^2/(2\sigma^2)}}{\sqrt{2\pi\sigma^2}}.
+\label{eq:single_dists}
+\end{equation}
+Let $\textbf{X}$ be the length of $\textbf{Y}$, which means $\textbf{X} = \sqrt{S^2+T^2+U^2+V^2}$.
+Then $\textbf{X}$ has the cumulative distribution function
+\begin{equation}
+F_X(x;\sigma) = \int \!\!\!\int \!\!\!\int \!\!\!\int_{H_x} \!\!f_S(\mu;\sigma)f_T(\mu;\sigma)f_U(\mu;\sigma)f_V(\mu;\sigma) ~dA,
+\label{eq:cumdist}
+\end{equation}
+where $H_x$ is the four-dimensional sphere
+\begin{equation}
+H_x = \left\{(s,t,u,v)~:~\sqrt{s^2+t^2+u^2+v^2} < x \right\}.
+\label{eq:4dsphere}
+\end{equation}
+We then can write the integral in polar representation
+\begin{align}
+F_X(x;\sigma) = & ~\frac{1}{4\pi^2\sigma^4} \!\int_0^\pi \!\!\!\!\int_0^\pi \!\!\!\!\int_0^{2\pi} \!\!\!\!\!\int_0^x \!r^3e^{\frac{-r^2}{2\sigma^2}} \mbox{sin}(\theta) \mbox{sin}(\phi) \mbox{cos}(\psi) ~dr d\theta d\phi d\psi \nonumber \\
+= & ~\frac{1}{2\sigma^4} \int_0^x r^3e^{-r^2/(2\sigma^2)} ~dr.
+\label{eq:polarint}
+\end{align}
+The probability density function of $\textbf{X}$ is the derivative of its cumulative distribution function so we use the funamental theorem of calculus on \eqref{eq:polarint} to finally arrive at
+\begin{equation}
+f_X(x;\sigma) = \frac{d}{dx}F_X(x;\sigma) =  ~\frac{1}{2\sigma^4} x^3e^{-x^2/(2\sigma^2)}.
+\label{eq:finaldist}
+\end{equation}

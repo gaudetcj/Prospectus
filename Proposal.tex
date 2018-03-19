@@ -1,104 +1,358 @@
 \chapter{Work Completed}
-The goal is to find which combination of new techniques provides the greatest overall segmentation results. To that end we have taken a particularly challenging data set, the 2D EM segmentation challenge \cite{emdata}. The training data is a set of 30 sections from a serial section Transmission Electron Microscopy (ssTEM) data set of the Drosophila first instar larva ventral nerve cord (VNC). The microcube measures 2 x 2 x 1.5 microns approx., with a resolution of 4x4x50 nm$/$pixel. The corresponding binary labels are provided in an in-out fashion, i.e. white for the pixels of segmented objects and black for the rest of pixels (which correspond mostly to membranes). This data set has many fine lines to segment, is heavily biased towards the membrane class, and has few training examples. The test set for the model does not have ground truth labels released to the public and instead one must submit their predictions for an accuracy measure. Because of this our result figures can only show our predictions and no ground truth label to compare next to it.
+In this chapter we list the results of our research so far and then discuss proposed research paths moving forward, as well as time lines to complete said tasks.
 
-\section{Models}
-Here we describe the models we have used for results so far. The overall basic shape of the model is shown in Fig.~\ref{f:model} and the individual components are shown in Fig.~\ref{f:modelpieces}. The overall shape was inspired by the U-Net model from Section~\ref{s:unet}. Instead of using any type of pooling layers we instead use a strided convolution to down sample feature maps. Also we differ from the U-Net model in the short connections. In U-Net the feature maps forwarded by the short connections are concatenated, but in our model they are summed. Along with the residual connections inside each ResBlock, these long residual connections make our model a fully residual model. The full residual model is shown to help information flow within and across levels in the network \cite{quan2016fusionnet}. Also by not concatenating we reduce the number of feature maps in the expanding path of the model. For the multi-scale residual block we hope to increase the models spatial contiguity by giving it multiple fields of view around each local point.
+\section{Introduction}
+We have shown several advances in neural networks in the last section and the majority of work done is real-values.
+We shall go through some work that shows the promise of complex and hyper-complex numbers to motivate our work.
+Using complex numbers in recurrent neural networks (RNNs) has been shown to increase learning speed and provide a more noise robust memory retrieval mechanism \cite{arjovsky2016unitary, danihelka2016associative, wisdom2016full}.
+The first formulation of complex batch normalization and complex weight initialization is presented by \cite{trabelsi2017deep} where they achieve some state of the art results on the MusicNet data set.
+Hyper-complex numbers are less explored in neural networks, but have seen use in manual image and signal processing techniques \cite{bulow1999hypercomplex, sangwine2000colour, bulow2001hypercomplex}.
+Examples of using quaternion values in networks is mostly limited to architectures that take in quaternion inputs or predict quaternion outputs, but do not have quaternion weight values \cite{rishiyur2006neural, kendall2015posenet}. 
+There are some more recent examples of building models that use quaternions represented as real-values. 
+In \cite{parcollet2016quaternion} they used a quaternion multi-layer perceptron (QMLP) for document understanding and \cite{minemoto2017feed} uses a similar approach in processing multi-dimensional signals. 
 
-The first half of the network is called the encoding path. Along this path the number of feature maps is doubled after each downsampling. After the center ResBlock begins the decoding path. In the decoding part, the number of feature maps is halved per level to maintain the network symmetry. The downsampling and upsampling are done with convolution layers. These convolutional layers serve as a connector to bridge the input feature maps and the residual block because the number of feature maps from the previous layer may differ from that of the residual block. The proposed network performs an end-to-end segmentation from the input data to the final prediction of the segmentation. We train the network with image set pairs corresponding to the image and its segmentation label, compare the output with manual segmentation, and use a loss function to back-propagate to adjust the weights of the network.
+Building on \cite{trabelsi2017deep} our contribution in this paper is to formulate and implement quaternion convolution, batch normalization, and weight initialization \footnote{Source code located at https://github.com/gaudetcj/DeepQuaternionNetworks}.
+There arises some difficulty over complex batch normalization that we had to overcome as their is no analytic form for our inverse square root matrix.
 
-\begin{figure}[h!]
+\section{Motivation and Related Work}
+The ability of quaternions to effectively represent spatial transformations and analyze multi-dimensional signals makes them promising for applications in artificial intelligence.
+
+One common use of quaternions is for representing rotation into a more compact form. 
+PoseNet \cite{kendall2015posenet} used a quaternion as the target output in their model where the goal was to recover the $6-$DOF camera pose from a single RGB image.
+The ability to encode rotations may make a quaternion network more robust to rotational variance.
+
+Quaternion representation has also been used in signal processing.  
+The amount of information in the phase of an image has been shown to be sufficient to recover the majority of information encoded in its magnitude by Oppenheim and Lin \cite{oppenheim1981importance}.
+The phase also encodes information such as shapes, edges, and orientations.
+Quaternions can be represented as a 2~x~2 matrix of complex numbers, which gives them a group of phases potentially holding more information compared to a single phase.
+
+Bulow and Sommer \cite{bulow2001hypercomplex} used the higher complexity representation of quaternions by extending Gabor's complex signal to a quaternion one which was then used for texture segmentation.
+Another use of quaternion filters is shown in \cite{sangwine2000colour} where they introduce a new class of filter based on convolution with hyper-complex masks, and present three color edge detecting filters. 
+These filters rely on a three-space rotation about the grey line of RGB space and when applied to a color image produce an almost greyscale image with color edges where the original image had a sharp change of color.
+More quaternion filter use is shown in \cite{shi2007quaternion} where they show that it is effective in the context of segmenting color images into regions of similar color texture. 
+They state the advantage of using quaternion arithmetic is that a color can be represented and analyzed as a single entity, which we will see holds for quaternion convolution in a convolutional neural network architecture as well in Section \ref{s:qc}.
+
+A quaternionic extension of a feed forward neural network, for processing multi-dimensional signals, is shown in \cite{minemoto2017feed}.
+They expect that quaternion neurons operate on multi-dimensional signals as single entities, rather than real-valued neurons that deal with each element of signals independently.
+A convolutional neural network (CNN) should be able to learn a powerful set of quaternion filters for more impressive tasks.
+
+Another large motivation is discussed in \cite{trabelsi2017deep}, which is that complex numbers are more efficient and provide more robust memory mechanisms compared to the reals \cite{bulow1999hypercomplex, sangwine2000colour, bulow2001hypercomplex}.
+They continue that residual networks have a similar architecture to associative memories since the residual shortcut paths compute their residual and then sum it into the memory provided by the identity connection.
+Again, given that quaternions can be represented as a complex group, they may provide an even more efficient and robust memory mechanisms.
+
+
+\section{Quaternion Network Components}
+This section will include the work done to obtain a working deep quaternion network. 
+Some of the longer derivations are given in the Appendix.
+
+\subsection{Quaternion Representation}
+Recall the quaternion algebra presented in \ref{s:quatalg}.
+Since we will be performing quaternion arithmetic using reals it is useful to embed $\mathbb{H}$ into a real-valued representation.
+There exists an injective homomorphism from $\mathbb{H}$ to the matrix ring $M(4,\mathbb{R})$ where $M(4,\mathbb{R})$ is a 4x4 real matrix.
+The 4~x~4 matrix can be written as
+\begin{align}
+\begin{bmatrix}
+ a & -b & -c & -d \\ 
+ b & a & -d & c \\
+ c & d & a & -b \\
+ d & -c & b & a 
+\end{bmatrix}= &~~a
+\begin{bmatrix}
+ 1 & 0 & 0 & 0 \\ 
+ 0 & 1 & 0 & 0 \\
+ 0 & 0 & 1 & 0 \\
+ 0 & 0 & 0 & 1 
+\end{bmatrix}
+\nonumber \\ &+ b 
+\begin{bmatrix}
+ 0 & -1 & 0 & 0 \\ 
+ 1 & 0 & 0 & 0 \\
+ 0 & 0 & 0 & -1 \\
+ 0 & 0 & 1 & 0 
+\end{bmatrix}
+\nonumber \\ &+ c
+\begin{bmatrix}
+ 0 & 0 & -1 & 0 \\ 
+ 0 & 0 & 0 & 1 \\
+ 1 & 0 & 0 & 0 \\
+ 0 & -1 & 0 & 0 
+\end{bmatrix}
+\nonumber \\ &+ d
+\begin{bmatrix}
+ 0 & 0 & 0 & -1 \\ 
+ 0 & 0 & -1 & 0 \\
+ 0 & 1 & 0 & 0 \\
+ 1 & 0 & 0 & 0 
+\end{bmatrix}.
+\label{eq:m4r}
+\end{align}
+This representation of quaternions is not unique, but we will stick to the above in this paper.
+It is also possible to represent $\mathbb{H}$ as $M(2,\mathbb{C})$ where $M(2,\mathbb{C})$ is a 2~x~2 complex matrix.
+
+With our real-valued representation a quaternion real-valued $2D$ convolution layer can be expressed as follows. 
+Say that the layer has $N$ feature maps such that $N$ is divisible by 4.
+We let the first $N/4$ feature maps represent the real components, the second $N/4$ represent the $i$ imaginary components, the third $N/4$ represent the $j$ imaginary components, and the last $N/4$ represent the $k$ imaginary components.
+
+
+\subsection{Quaternion Differentiability}
+In order for the network to perform backpropagation the cost function and activation functions used must be differentiable with respect to the real, $i$, $j$, and $k$ components of each quaternion parameter of the network.
+As the complex chain rule is shown in \cite{trabelsi2017deep}, we provide the quaternion chain rule which is given in the Appendix section \ref{a:diff}.
+
+
+\subsection{Quaternion Convolution}\label{s:qc}
+Convolution in the quaternion domain is done by convolving a quaternion filter matrix $\textbf{W}=\textbf{A}+\textit{i}\textbf{B}+\textit{j}\textbf{C}+\textit{k}\textbf{D}$ by a quaternion vector $\textbf{h}=\textbf{w}+\textit{i}\textbf{x}+\textit{j}\textbf{y}+\textit{k}\textbf{z}$. 
+Performing the convolution by using the distributive property and grouping terms one gets
+\begin{align}
+\textbf{W}\ast \textbf{h} = &~(\textbf{A}\ast\textbf{w}-\textbf{B}\ast\textbf{x}-\textbf{C}\ast\textbf{y}-\textbf{D}\ast\textbf{z}) + \nonumber \\ 
+&\textit{i}(\textbf{A}\ast\textbf{x}+\textbf{B}\ast\textbf{w}+\textbf{C}\ast\textbf{z}-\textbf{D}\ast\textbf{y}) + \nonumber \\
+&\textit{j}(\textbf{A}\ast\textbf{y}-\textbf{B}\ast\textbf{z}+\textbf{C}\ast\textbf{w}+\textbf{D}\ast\textbf{x}) + \nonumber \\
+&\textit{k}(\textbf{A}\ast\textbf{z}+\textbf{B}\ast\textbf{y}-\textbf{C}\ast\textbf{x}+\textbf{D}\ast\textbf{w}).
+\label{eq:convolve1}
+\end{align}
+Using a matrix to represent the components of the convolution we have:
+\begin{equation}
+\begin{bmatrix}
+ \mathscr{R}(\textbf{W}\ast \textbf{h}) \\ 
+ \mathscr{I}(\textbf{W}\ast \textbf{h}) \\
+ \mathscr{J}(\textbf{W}\ast \textbf{h}) \\
+ \mathscr{K}(\textbf{W}\ast \textbf{h}) 
+\end{bmatrix}
+=
+\begin{bmatrix}
+ \textbf{A} & -\textbf{B} & -\textbf{C} & -\textbf{D}\\
+ \textbf{B} & \textbf{A} & -\textbf{D} & \textbf{C} \\
+ \textbf{C} & \textbf{D} & \textbf{A} & -\textbf{B} \\
+ \textbf{D} & -\textbf{C} & \textbf{B} & \textbf{A} \\
+\end{bmatrix}
+\ast
+\begin{bmatrix}
+ \textbf{w} \\ 
+ \textbf{x} \\
+ \textbf{y} \\
+ \textbf{z}
+\end{bmatrix}
+\label{eq:}
+\end{equation}
+An example is shown in Fig.~\ref{f:quatconv} where one can see how quaternion convolution forces a linear depthwise mixture of the channels. This is similar to a mixture of standard convolution and depthwise separable convolution from \cite{chollet2016xception}. This reuse of filters on every layer and combination may help extract texture information across channels as seen in \cite{shi2007quaternion}.
+
+\begin{figure*}
 	\centering
-		\includegraphics[width=0.4\textwidth]{figures/mymodel.png}
-	\caption{The model architecture. Feature maps from the down path get summed with feature maps of the corresponding size in the up path. The ResBlock types are shown in Figs.~\ref{f:basic}~\&~\ref{f:multi} and the DConvolution and UConvolution are shown in Fig.~\ref{f:dconv} and Fig.~\ref{f:uconv} respectively.}
-	\label{f:model}
-\end{figure}
-\begin{figure}
-    \centering
-    \begin{subfigure}[b]{0.39\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{figures/basic.png}
-        \caption{A basic residual block.}
-				\label{f:basic}
-    \end{subfigure}
-    \hfill
-		\begin{subfigure}[b]{0.59\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{figures/multiscale.png}
-				\caption{A multi-scale residual block.}
-        \label{f:multi}
-    \end{subfigure}
-    \\
-    \begin{subfigure}[b]{0.25\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{figures/dconv.png}
-				\caption{A down sampling block.}
-        \label{f:dconv}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.25\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{figures/uconv.png}
-				\caption{An upsampling block.}
-        \label{f:uconv}
-    \end{subfigure}
-    \caption{Model components.}
-    \label{f:modelpieces}
-\end{figure}
+		\includegraphics[width=1.0\textwidth]{figures/quatconv.png}
+	\caption{An illustration of quaternion convolution.}
+	\label{f:quatconv}
+\end{figure*}
 
-\section{Training}
-For training we select an image size $s$ and a batch size $B$. We then randomly sample a $s\times s$ image from a randomly selected training image. That sub-image is then modified by first adding a very small amount of Gaussian noise, randomly flipped left to right or top to bottom, and randomly rotated a small angle between -20 and 20 degrees. Sub-images are grabbed in this manner until there are $B$ of them. The batch is then run through the model and the weights are updated. We have a set number of batches that we called an epoch, but each epoch is a different set of batches since all augmentation happens online. After each epoch we observe the model's loss on the validation set and keep a record of it along with the corresponding weights. After the total number of epochs is done running we restore the weights to the point of lowest validation loss.
 
-\section{Experimental Setup}
-The proposed deep network is implemented using Keras open-source deep learning library \cite{chollet2015}. This library provides an easy-to-use high-level programming API written in Python, and Theano or TensorFlow can be chosen for a backend deep learning engine. Since the work was done on a Windows PC the Theano backend was chosen as TensorFlow did not support GPU processing on Windows. Training and deployment of the network is conducted on a PC equipped with an Intel i7 CPU with a 64 GB main memory and an NVIDIA GTX Geforce 980 Ti GPU.
+\subsection{Quaternion Batch-Normalization}
+Batch-normalization \cite{ioffe2015batch} is used by the vast majority of all deep networks to stabilize and speed up training.
+It works by keeping the activations of the network at zero mean and unit variance.
+The original formulation of batch-normalization only works for real-values. 
+Applying batch normalization to complex or hyper-complex numbers is more difficult, one can not simply translate and scale them such that their mean is 0 and their variance is 1.
+This would not give equal variance in the multiple components of a complex or hyper-complex number.
+To overcome this for complex numbers a whitening approach is used \cite{trabelsi2017deep}, which scales the data by the square root of their variances along each of the two principle components.
+We use the same approach, but must whiten 4D vectors.
 
-\section{Results}
-This section will show comparison results from many different models so we will break this section into subsections and begin each subsection with a description of the models being compared. 
+However, an issue arises in that there is no nice way to calculate the inverse square root of a 4~x~4 matrix.
+It turns out that the square root is not necessary and we can instead use the Cholesky decomposition on our covariance matrix.
+The details of why this works for whitening given in the Appendix section \ref{a:whitening}.
+Now our whitening is accomplished by multiplying the \textbf{0}-centered data ($\textbf{x} - \mathbb{E}[\textbf{x}]$) by \textbf{W}:
+\begin{equation}
+\tilde{x} = \textbf{W}(\textbf{x} - \mathbb{E}[\textbf{x}])
+\label{eq:white4d}
+\end{equation}
+where \textbf{W} is one of the matrices from the Cholesky decomposition of $\textbf{V}^{-1}$ where \textbf{V} is the covariance matrix given by:
+\begin{align}
+\textbf{V}
+=&
+\begin{bmatrix}
+ V_{rr} & V_{ri} & V_{rj} & V_{rk} \\
+ V_{ir} & V_{ii} & V_{ij} & V_{ik} \\
+ V_{jr} & V_{ji} & V_{jj} & V_{jk} \\
+ V_{kr} & V_{ki} & V_{kj} & V_{kk}
+\end{bmatrix} \nonumber \\
+=&~~  \left[ 
+\begin{matrix*}[l]
+\mbox{Cov}(\mathscr{R}\{\textbf{x}\}, \mathscr{R}\{\textbf{x}\}) \\
+\mbox{Cov}(\mathscr{I}\{\textbf{x}\}, \mathscr{R}\{\textbf{x}\}) \\
+\mbox{Cov}(\mathscr{J}\{\textbf{x}\}, \mathscr{R}\{\textbf{x}\}) \\
+\mbox{Cov}(\mathscr{K}\{\textbf{x}\}, \mathscr{R}\{\textbf{x}\}) \\
+\end{matrix*} \right. \nonumber \\ 
+&~~~~~~
+\begin{matrix*}[l]
+\mbox{Cov}(\mathscr{R}\{\textbf{x}\}, \mathscr{I}\{\textbf{x}\}) \\
+\mbox{Cov}(\mathscr{I}\{\textbf{x}\}, \mathscr{I}\{\textbf{x}\}) \\
+\mbox{Cov}(\mathscr{J}\{\textbf{x}\}, \mathscr{I}\{\textbf{x}\}) \\
+\mbox{Cov}(\mathscr{K}\{\textbf{x}\}, \mathscr{I}\{\textbf{x}\}) \\
+\end{matrix*} \nonumber \\
+&~~~~~~~
+\begin{matrix*}[l]
+\mbox{Cov}(\mathscr{R}\{\textbf{x}\}, \mathscr{J}\{\textbf{x}\}) \\
+\mbox{Cov}(\mathscr{I}\{\textbf{x}\}, \mathscr{J}\{\textbf{x}\}) \\
+\mbox{Cov}(\mathscr{J}\{\textbf{x}\}, \mathscr{J}\{\textbf{x}\}) \\
+\mbox{Cov}(\mathscr{K}\{\textbf{x}\}, \mathscr{J}\{\textbf{x}\}) \\
+\end{matrix*} \nonumber \\
+&~~~~~~~~ \left.
+\begin{matrix*}[l]
+\mbox{Cov}(\mathscr{R}\{\textbf{x}\}, \mathscr{K}\{\textbf{x}\}) \\
+\mbox{Cov}(\mathscr{I}\{\textbf{x}\}, \mathscr{K}\{\textbf{x}\}) \\
+\mbox{Cov}(\mathscr{J}\{\textbf{x}\}, \mathscr{K}\{\textbf{x}\}) \\
+\mbox{Cov}(\mathscr{K}\{\textbf{x}\}, \mathscr{K}\{\textbf{x}\}) \\
+\end{matrix*}  \right]
+\label{eq:V4d}
+\end{align}
+where Cov$(\cdot)$ is the covariance and $\mathscr{R}\{x\}$, $\mathscr{I}\{x\}$, $\mathscr{J}\{x\}$, and $\mathscr{K}\{x\}$ are the real, $i$, $j$, and $k$ components of $\textbf{x}$ respectively.
 
-\subsection{Basic Comparison}
-In this section we are establishing a baseline for each of the three main models. We are comparing: the U-Net \cite{ronneberger2015u}, our model shown in Fig.~\ref{f:model} with the basic residual block shown in Fig.~\ref{f:basic}, and our model shown in Fig.~\ref{f:model} with the multi-scale residual block shown in Fig.~\ref{f:multi}. This baseline is using the most common non-saturating activation function, the ReLU shown in Eq.~\ref{e:relu}. Also we did not apply Batch Normalization in any of these baseline models. The loss function used was a binary cross-entropy on each pixel of the output. The loss plots are shown in Fig.~\ref{f:baseline-loss} and a sample segmentation is shown in Fig.~\ref{f:baseline}.
+Real-valued batch normalization also uses two learned parameters, $\beta$ and $\gamma$. 
+Our shift parameter {\boldmath$\beta$} must shift a quaternion value so it is a quaternion value itself with real, $i$, $j$, and $k$ as learnable components. 
+The scaling parameter {\boldmath$\gamma$} is a symmetric matrix of size matching $\textbf{V}$ given by:
+\begin{equation}
+\mathbf{\gamma}
+=
+\left( 
+\begin{array}{cccc}
+V_{rr} & V_{ri} & V_{rj} & V_{rk} \\
+V_{ri} & V_{ii} & V_{ij} & V_{ik} \\
+V_{rj} & V_{ij} & V_{jj} & V_{jk} \\
+V_{rk} & V_{ik} & V_{jk} & V_{kk}
+\end{array}
+\right)
+\label{eq:gamma}
+\end{equation}
+Because of its symmetry it has only ten learnable parameters. 
+The variance of the components of input $\tilde{\textbf{x}}$ are variance 1 so the diagonal of {\boldmath$\gamma$} is initialized to $1/\sqrt{16}$ in order to obtain a modulus of 1 for the variance of the normalized value. 
+The off diagonal terms of {\boldmath$\gamma$} and all components of {\boldmath$\beta$} are initialized to 0.
+The quaternion batch normalization is defined as:
+\begin{equation}
+\mbox{BN}(\tilde{\textbf{x}}) = \mathbf{\gamma}\tilde{\textbf{x}} + \mathbf{\beta}
+\label{eq:qbn}
+\end{equation}
 
-\begin{figure}[h!]
+
+\subsection{Quaternion Weight Initialization}
+The proper initialization of weights is vital to convergence of deep networks. 
+In this work we derive our quaternion weight initialization using the same procedure as Glorot and Bengio \cite{glorot2010understanding} and He et al. \cite{he2015delving}.
+
+To begin we find the variance of a quaternion weight:
+\begin{align}
+W = &~|W|e^{(\mbox{cos}\phi_1 \textit{i} + \mbox{cos}\phi_2 \textit{j} + \mbox{cos}\phi_3 \textit{k})\theta} \nonumber \\
+= &~\mathscr{R}\{W\} + \mathscr{I}\{W\} + \mathscr{J}\{W\} + \mathscr{K}\{W\}.
+\label{eq:quaternion_weight}
+\end{align}
+where $|W|$ is the magnitude, $\theta$ and $\phi$ are angle arguments, and $\mbox{cos}^2\phi_1 + \mbox{cos}^2\phi_2 + \mbox{cos}^2\phi_3 = 1$ \cite{turner2002}.
+
+Variance is defined as
+\begin{equation}
+\mbox{Var}(W) = \mathbb{E}[|W|^2] - (\mathbb{E}[W])^2,
+\label{eq:variance}
+\end{equation}
+but since $W$ is symmetric around 0 the term $(\mathbb{E}[W])^2$ is 0. 
+We do not have a way to calculate $\mbox{Var}(W) = \mathbb{E}[|W|^2]$ so we make use of the magnitude of quaternion normal values $|W|$, which follows an independent normal distribution with four degrees of freedom (DOFs).
+We can then calculate the expected value of $|W|^2$ to find our variance
+\begin{equation}
+\mathbb{E}[|W|^2] = \int_\infty^\infty x^2 f(x) ~dx = 4\sigma^2
+\label{eq:expected}
+\end{equation}
+where $f(x)$ is the four DOF distribution given in the Appendix.
+
+And since $\mbox{Var}(W) = \mathbb{E}[|W|^2]$, we now have the variance of $W$ expressed in terms of a single parameter $\sigma$:
+\begin{equation}
+\mbox{Var}(W) = 4\sigma^2.
+\label{eq:variance_sigma}
+\end{equation}
+
+To follow the Glorot and Bengio \cite{glorot2010understanding} initialization we have $\mbox{Var}(W) = 2/(n_{in}+n_{out})$, where $n_{in}$ and $n_{out}$ are the number of input and output units respectivly. 
+Setting this equal to \eqref{eq:variance_sigma} and solving for $\sigma$ gives $\sigma = 1/\sqrt{2(n_{in}+n_{out})}$.
+To follow He et al. \cite{he2015delving} initialization that is specialized for rectified linear units (ReLUs) \cite{nair2010rectified}, then we have $\mbox{Var}(W) = 2/n_{in}$, which again setting equal to \eqref{eq:variance_sigma} and solving for $\sigma$ gives $\sigma = 1/\sqrt{2n_{in}}$.
+
+As shown in \eqref{eq:quaternion_weight} the weight has components $|W|$, $\theta$, and $\phi$. 
+We can initialize the magnitude $|W|$ using our four DOF distribution defined with the appropriate $\sigma$ based on which initialization scheme we are following. 
+The angle components are initialized using the uniform distribution between $-\pi$ and $\pi$ where we ensure the constraint on $\phi$.
+
+
+\section{Experimental Results}
+Our experiments covered image classification using both the CIFAR-10 and CIFAR-100 benchmarks and image segmentation using the KITTI Road Estimation benchmark.
+
+\subsection{Classification}
+We use the same architecture as the large model in \cite{trabelsi2017deep}, which is a 110 layer Residual model similar to the one in \cite{he2016deep}.
+There is one difference between the real-valued network and the ones used for both the complex and hyper-complex valued networks.
+Because the datasets are all real-valued the network must learn the imaginary or quaternion components.
+We use the same technique as \cite{trabelsi2017deep} where there is an additional block immediately after the input which will learn the hyper-complex components
+\begin{equation*}
+BN \rightarrow ReLU \rightarrow Conv \rightarrow BN \rightarrow ReLU \rightarrow Conv.
+\end{equation*}
+
+Since all datasets that we work with are real-valued,
+we present a way to learn their imaginary components to let the rest of the network operate in the
+complex plane. 
+We learn the initial imaginary component of our input by performing the operations
+present within a single real-valued residual block
+
+This means that to maintain the same approximate parameter count the number of convolution kernels for the complex network was increased.
+We however did not increase the number of convolution kernels for the quaternion trials so any increase in model performance comes from the quaternion filters and at a lower hardware budget.
+
+The architecture consists of 3 stages of repeating residual blocks where at the end of each stage the images are downsized by strided convolutions.
+Each stage also doubles the previous stage's number of convolution kernels.
+The last layers are a global average pooling layer followed by a single fully connected layer with a softmax function used to classify the input as either one of the 10 classes in CIFAR-10 or one of the 100 classes in CIFAR-100.
+
+We also followed their training procedure of using the backpropagation algorithm with Stochastic Gradient Descent with Nesterov momentum \cite{nesterov1983method} set at 0.9.
+The norm of the gradients are clipped to 1 and a custom learning rate scheduler is used.
+The learning scheduler is the same used in \cite{trabelsi2017deep} for a direct comparison in performance.
+The learning rate is initially set to 0.01 for the first 10 epochs and then set it to 0.1 from epoch 10-100 and then cut by a factor of 10 at epochs 120 and 150.
+Table~\ref{t:results1} presents our results along side the real and complex valued networks.
+Our quaternion model outperforms the real and complex networks on both datasets on a smaller parameter budget.
+
+\begin{table}[h]
 	\centering
-		\includegraphics[width=1.0\textwidth]{figures/baseline_loss.png}
-	\caption{The loss and validation loss during training for the baseline models.}
-	\label{f:baseline-loss}
-\end{figure}
-\begin{figure}[h!]
+		\begin{tabular}{l c c}
+			\hline
+			Architecture & CIFAR-10 & CIFAR-100 \\
+			\hline
+			\cite{he2016deep} Real & 6.37 & - \\
+			\cite{trabelsi2017deep} Complex & 5.60 & 27.09 \\
+			Quaternion & \textbf{5.44} & \textbf{26.01}
+		\end{tabular}
+	\caption{Classification error on CIFAR-10 and CIFAR-100. Note that \cite{he2016deep} is a 110 layer residual network, \cite{trabelsi2017deep} is 118 layer complex network with the same design as the prior except with additional initial layers to extract complex mappings.}
+	\label{t:results1}
+\end{table}
+
+\subsection{Segmentation}
+For this experiment we used the same model as the above, but cut the number of residual blocks out of the model for memory reasons given that the KITTI data is large color images.
+The 110 layer model has 10, 9, and 9 residual blocks in the 3 stages talked about above, while this model has 2, 1, and 1 and does not perform any strided convolutions.
+This gives a total of 38 layers.
+
+The last layer is a $1 \times 1$ convolution with a sigmoid output so we are getting a heatmap prediction the same size as the input.
+The training procedure is also as above, but the learning rate is scheduled differently.
+Here we begin at 0.01 for the first 10 epochs and then set it to 0.1 from epoch 10-50 and then cut by a factor of 10 at 100 and 150.
+Table~\ref{t:results2} presents our results along side the real and complex valued networks where we used Intersection over Union (IOU) for performance measure.
+Quaternion outperformed the other two by a larger margin compared to the classification tasks.
+
+\begin{table}[h]
 	\centering
-		\includegraphics[width=1.0\textwidth]{figures/baseline.png}
-	\caption{Sample segmentation on a test image for the baseline models. The test image is shown in its normalize stated, which is scaling the values between minus one and one. From left to right: test image, U-Net segmentation, our model, and our model with multi-scale convolution. The segmentations are shown in a red to blue color map where red is 0 and blue is 1.}
-	\label{f:baseline}
-\end{figure}
-
-\subsection{Applying Batch Normalization}
-Most state of the art models use Batch Normalization. We apply it directly before every non-linearity in the model. This is to keep the values, which can become large from the addition operations of the residual connections, stay mean centered. The loss plots are shown in Fig.~\ref{f:batchnorm-loss} and a sample segmentation is shown in Fig.~\ref{f:batchnorm}. Compare how smooth the losses are compared to the baseline model's loss in Fig.~\ref{f:baseline-loss}. The resulting segmentations also come out much more crisp, especially around the edges of the membranes compared to the basic model's segmentation in Fig.~\ref{f:baseline}. Another interesting observation is that the multi-scale segmentation completely segmented the large membrane structure in the bottom right, while the other two models left the center open. This shows that the wider field of view helped the multi-scale model in this instance.
-
-\begin{figure}[h!]
-	\centering
-		\includegraphics[width=1.0\textwidth]{figures/batchnorm_loss.png}
-	\caption{The loss and validation loss during training for the batchnorm models.}
-	\label{f:batchnorm-loss}
-\end{figure}
-\begin{figure}[h!]
-	\centering
-		\includegraphics[width=1.0\textwidth]{figures/batchnorm.png}
-	\caption{Sample segmentation on a test image for the batchnorm models. From left to right: test image, U-Net segmentation, our model, and our model with multi-scale convolution.}
-	\label{f:batchnorm}
-\end{figure}
-
-\chapter{Additional Research}
-In the above we have explored the effects of combining several new breakthroughs in deep neural networks for the task of semantic segmentation. Going forward we would like to explore using GAN models using the newly proposed Wasserstein and the least square loss functions to combat the training instabilities often seen in GANs. This would be the first to our knowledge implementation of GANs for segmentation with those loss functions. We would use the models we have already explored as the generators for these GANs and could publish a stand alone paper on these results.
-
-We also want to look at the results of running a RNN refinement type model on the outputs of all previous models we have explored as well as the GANs outputs. While this may improve our GANs results, we do not believe it would be enough for its own paper.
-
-We also intend to run all of models on more data sets. For the second data set we chose the Larval Zebrafish EM data, which is another neuronal segmentation challenge. However, this set has released the ground truth labels for the test data. And lastly we want to run on a more natural image challenge so we chose the COCO 2016 Detection Challenge segmentation challenge. The COCO data set has more than 200,000 images and 80 object categories.
+		\begin{tabular}{l c c}
+			\hline
+			Architecture & KITTI \\
+			\hline
+			Real & 0.747 \\
+			Complex & 0.769 \\
+			Quaternion & \textbf{0.827}
+		\end{tabular}
+	\caption{IOU on KITTI Road Estimation benchmark.}
+	\label{t:results2}
+\end{table}
 
 
-\chapter{Timeline}
-The additional research to be carried out could be finished over the summer months. The code base is written in a very modular way allowing changes to any part of the models with a single variable change. 
+\section{Conclusions and Proposed Research}
+We have extended upon work looking into complex valued networks by exploring quaternion values.
+We presented the building blocks required to build and train deep quaternion networks and used them to test residual architectures on two common image classification benchmarks.
+We show that they have competitive performance by beating both the real and complex valued networks with less parameters.
 
-\section{Refinement RNN}
-The code for the refinement RNN is already written, but no results have been generated yet. The biggest challenge with this model is that it requires a large amount of GPU memory and it takes a long time to train compared to the other models in this paper. To combat this we intend to deploy this model on AWS instances so it does not tie up my main machine from other work. I am very familiar with using AWS so the setup time will be very minimal.
+Since the entirety of the work so far has been done in supervised learning, it seems prudent to explore results in unsupervised learning compared to real and complex networks.
+The proposed idea is to test quaternion values in a Deep Adversarial Gaussian Mixture Autoencoder \cite{harchaoui2017deep}.
+We will compare the current results of with results of both complex and quaternion networks.
+Another area to explore would be in networks designed to handle 3D data given quaternions natural expressive capapilities in this area.
+PointNet \cite{qi2017pointnet} and its newer variants take in a group of 3D points and use a deep network to classify the entire cloud as a class and/or classify each point in the cloud as a class.
+We will compare the latest PointNet variant with complex and quaternion value models.
 
-\section{GAN Model}
-The majority of the time will come from the implementation of the GAN model. For only this model we will need to add some new code that handles training the discriminator and generator in simultaneous fashion. We also must implement the proposed loss functions since they are not build into any existing deep learning framework. We plan to attack this problem in steps. First we will implement a simple GAN to generate MNIST examples in a too be determined deep learning framework. Once this is working we will create the new loss functions and test them on the MNIST GAN. After we are confident in our ability to run the simultaneous training steps and that our custom loss functions are working we will implement the segmentation GAN.
+The majority of work was the upfront work of creating and coding the algorithms needed for deep quaternion networks.
+With that done the work to explore these last two ideas only involves pulling the authors code and replacing their real layers with complex and then quaternion layers.
+Including running the experiments the amount of time would be less than 6 months.

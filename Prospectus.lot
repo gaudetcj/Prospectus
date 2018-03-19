@@ -2,5 +2,6 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\addvspace {10\p@ }
+\contentsline {table}{\numberline {4.1}{\ignorespaces Classification error on CIFAR-10 and CIFAR-100. Note that \cite {he2016deep} is a 110 layer residual network, \cite {trabelsi2017deep} is 118 layer complex network with the same design as the prior except with additional initial layers to extract complex mappings.\relax }}{36}
+\contentsline {table}{\numberline {4.2}{\ignorespaces IOU on KITTI Road Estimation benchmark.\relax }}{37}
 \addvspace {10\p@ }
