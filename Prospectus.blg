@@ -1,23 +1,22 @@
 This is BibTeX, Version 0.99dThe top-level auxiliary file: Prospectus.aux
 The style file: alpha.bst
 Database file #1: bib.bib
-Repeated entry---line 642 of file bib.bib
+Repeated entry---line 659 of file bib.bib
  : @article{clevert2015fast
  :                         ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 659 of file bib.bib
+Repeated entry---line 676 of file bib.bib
  : @inproceedings{ioffe2015batch
  :                              ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 820 of file bib.bib
+Repeated entry---line 837 of file bib.bib
  : @inproceedings{he2015delving
  :                             ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 828 of file bib.bib
+Repeated entry---line 845 of file bib.bib
  : @inproceedings{nair2010rectified
  :                                 ,
 I'm skipping whatever remains of this entry
-Warning--I didn't find a database entry for ""
 Warning--can't use both volume and number fields in glorot2011deep
 Warning--empty journal in harchaoui2017deep
 Warning--there's a number but no volume in kessy2017optimal

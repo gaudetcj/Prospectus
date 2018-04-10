@@ -1,0 +1,32 @@
+\chapter{Introduction}
+
+
+\section{Deep Learning}
+In recent years the area of artificial intelligence has seen massive growth.
+The majority of work has been around a fairly new area sub-field called Deep Learning (DL).
+Deep Learning is broadly described as Neural Networks composed of multiple layers.
+One type of DL model called Convolutional Neural Networks (CNNs) has achieved state-of-the-art results in almost all Computer Vision (CV) problems, as well as some outside of CV.
+The power of CNNs comes from automatically finding a set of highly expressive, hierarchical features.
+As we will discuss more in the CNN section, the way they work is closely related to the way the biological vision system works.
+
+
+\section{Beyond Real Numbers}
+Historically the majority of work done in DL, and even Neural Networks, has been using real-valued numbers.
+Recently there has been increased attention on using complex numbers.
+Complex numbers have several advantages from a computational, biological, and signal processing perspective \cite{trabelsi2017deep}.
+One big motivation is that a complex number holds more information than a real number, complex-valued formulation captures amplitude and phase by definition.
+Biologically this can be thought of as the neuron’s  firing rate and the relative timing of its activity.
+
+Quaternions are an extension of the complex numbers.
+While the complex plane is 2D, the quaternion space is 4D.
+They offer some important benefits that over the complex numbers, but note that since a quaternion can be expressed as a $2\times2$ matrix of complex numbers that we are not giving anything up.
+We will show that the main advantages come from a quaternion being able to very compactly represent rotations in 3D space and, more importantly, from the algebraic structure inducing promising properties for CNNs.
+
+
+
+\section{Outline}
+In the following chapters we will fully cover CNNs and their latest developments as well as give the reader a primer on quaternions.
+This sets up necessary background knowledge for us to describe our main contributions, which include a novel quaternion weight initialization scheme and novel algorithms for quaternion batch-normalization.
+These pieces, along with quaternion convolutions, allow for the construction of a quaternion CNN (QCNN).
+We perform sanity checks on the QCNN by comparing its performance against real-valued and complex CNNs on common benchmark data sets in both classification and segmentation and find the QCNN outperforms both.
+With these promising results are goal is to explore QCNN performance on more demanding tasks, particularly ones we believe the algebraic structure of quaternions lends itself too.

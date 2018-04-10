@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500) (preloaded format=pdflatex 2018.1.27)  18 MAR 2018 22:34
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500) (preloaded format=pdflatex 2018.1.27)  8 APR 2018 22:26
 entering extended mode
 **./Prospectus.tex
 (Prospectus.tex
@@ -380,8 +380,6 @@ Package caption Info: End \AtBeginDocument code.
 
 {C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]) [1
 
-] [2
-
 ] (Prospectus.toc
 LaTeX Font Info:    Try loading font information for U+msa on input line 2.
  ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
@@ -396,31 +394,21 @@ LaTeX Font Info:    Try loading font information for U+rsfs on input line 2.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\jknappen\ursfs.fd"
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
-) [3
+) [2
 
-] [4])
+] [3] [4])
 \tf@toc=\write3
 \openout3 = `Prospectus.toc'.
 
- [5] (IntroductionToQuaternions.tex
+ [5] (Introduction.tex
 Chapter 1.
+Missing character: There is no ’ in font cmr12!
 [6
 
 
-] [7]
-Overfull \hbox (3.25577pt too wide) in paragraph at lines 91--91
-[]\OT1/cmr/bx/n/17.28 Geometric Rep-re-sen-ta-tion of Quater-nions 
- []
-
-[8] [9]
-<figures/r3.png, id=44, 611.28375pt x 289.83281pt>
-File: figures/r3.png Graphic file (type png)
-<use figures/r3.png>
-Package pdftex.def Info: figures/r3.png  used on input line 153.
-(pdftex.def)             Requested size: 390.0pt x 184.91301pt.
- [10 <./figures/r3.png>] [11]) (IntroductionToCnns.tex [12]
+]) (IntroductionToCnns.tex [7]
 Chapter 2.
-<figures/lenet5.png, id=58, 1189.44376pt x 338.01282pt>
+<figures/lenet5.png, id=32, 1189.44376pt x 338.01282pt>
 File: figures/lenet5.png Graphic file (type png)
 <use figures/lenet5.png>
 Package pdftex.def Info: figures/lenet5.png  used on input line 11.
@@ -428,68 +416,90 @@ Package pdftex.def Info: figures/lenet5.png  used on input line 11.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[13
+[8
 
-] [14 <./figures/lenet5.png>]
-<figures/convolution.png, id=66, 599.99156pt x 409.53pt>
+] [9 <./figures/lenet5.png>]
+<figures/convolution.png, id=43, 599.99156pt x 409.53pt>
 File: figures/convolution.png Graphic file (type png)
 <use figures/convolution.png>
 Package pdftex.def Info: figures/convolution.png  used on input line 47.
 (pdftex.def)             Requested size: 370.49881pt x 252.89365pt.
- [15 <./figures/convolution.png>]
-<figures/maxpool.png, id=71, 876.27374pt x 463.7325pt>
+ [10 <./figures/convolution.png>]
+<figures/maxpool.png, id=48, 876.27374pt x 463.7325pt>
 File: figures/maxpool.png Graphic file (type png)
 <use figures/maxpool.png>
 Package pdftex.def Info: figures/maxpool.png  used on input line 68.
 (pdftex.def)             Requested size: 370.49881pt x 196.07536pt.
- [16 <./figures/maxpool.png>]) (StateOfTheArt.tex
-[17]
+ [11 <./figures/maxpool.png>]) (StateOfTheArt.tex
+[12]
 Chapter 3.
-[18
+[13
 
-] [19]
-<figures/activations.png, id=86, 825.83531pt x 739.26187pt>
+] [14]
+<figures/activations.png, id=64, 825.83531pt x 739.26187pt>
 File: figures/activations.png Graphic file (type png)
 <use figures/activations.png>
-Package pdftex.def Info: figures/activations.png  used on input line 80.
+Package pdftex.def Info: figures/activations.png  used on input line 76.
 (pdftex.def)             Requested size: 331.50238pt x 296.74857pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[20] [21 <./figures/activations.png>] [22]
-<figures/inceptionblock.png, id=97, 694.595pt x 367.3725pt>
+[15] [16 <./figures/activations.png>] [17]
+Missing character: There is no â in font cmr12!
+Missing character: There is no € in font cmr12!
+Missing character: There is no ™ in font cmr12!
+ [18] [19]
+<figures/inceptionblock.png, id=83, 694.595pt x 367.3725pt>
 File: figures/inceptionblock.png Graphic file (type png)
 <use figures/inceptionblock.png>
-Package pdftex.def Info: figures/inceptionblock.png  used on input line 143.
+Package pdftex.def Info: figures/inceptionblock.png  used on input line 194.
 (pdftex.def)             Requested size: 390.0pt x 206.27654pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<figures/resblock.png, id=98, 406.51875pt x 204.765pt>
+ [20]
+<figures/resblock.png, id=87, 406.51875pt x 204.765pt>
 File: figures/resblock.png Graphic file (type png)
 <use figures/resblock.png>
-Package pdftex.def Info: figures/resblock.png  used on input line 159.
+Package pdftex.def Info: figures/resblock.png  used on input line 210.
 (pdftex.def)             Requested size: 312.00119pt x 157.16023pt.
-[23]) (Proposal.tex [24 <./figures/inceptionblock.png> <./figures/resblock.png>] [25]
+ [21 <./figures/inceptionblock.png>])
+(IntroductionToQuaternions.tex [22 <./figures/resblock.png>] [23]
 Chapter 4.
-[26
+[24
 
-] [27] [28] [29]
-<figures/quatconv.png, id=124, 2091.815pt x 2509.375pt>
+] [25] [26]
+Overfull \hbox (3.25577pt too wide) in paragraph at lines 121--121
+[]\OT1/cmr/bx/n/17.28 Geometric Rep-re-sen-ta-tion of Quater-nions 
+ []
+
+[27]
+<figures/r3.png, id=113, 611.28375pt x 289.83281pt>
+File: figures/r3.png Graphic file (type png)
+<use figures/r3.png>
+Package pdftex.def Info: figures/r3.png  used on input line 183.
+(pdftex.def)             Requested size: 390.0pt x 184.91301pt.
+ [28] [29 <./figures/r3.png>] [30]) (Proposal.tex [31]
+Chapter 5.
+[32
+
+] [33] [34] [35]
+<figures/quatconv.png, id=142, 2091.815pt x 2509.375pt>
 File: figures/quatconv.png Graphic file (type png)
 <use figures/quatconv.png>
-Package pdftex.def Info: figures/quatconv.png  used on input line 140.
+Package pdftex.def Info: figures/quatconv.png  used on input line 141.
 (pdftex.def)             Requested size: 390.0pt x 467.82637pt.
- [30] [31 <./figures/quatconv.png>] [32] [33] [34] [35] [36] [37]) (Appendix.tex [38]
-Chapter 5.
-[39
+
+Overfull \hbox (27.7131pt too wide) detected at line 200
+[]
+ []
+
+[36] [37 <./figures/quatconv.png>] [38] [39] [40] [41]) (Appendix.tex [42]
+Chapter 6.
+[43
 
 ]
 Overfull \vbox (34.03642pt too high) has occurred while \output is active []
 
- [40] [41]) (Prospectus.bbl [42]
+ [44] [45]) (Prospectus.bbl [46]
 Underfull \hbox (badness 10000) in paragraph at lines 5--10
 []\OT1/cmr/m/n/12 Apple.  Per-form-ing con-vo-lu-tion op-er-a-tions.
  []
@@ -500,62 +510,61 @@ Overfull \hbox (459.44139pt too wide) in paragraph at lines 5--10
 tions/ConvolutionOperations.html,
  []
 
-[43
+[47
 
-] [44]
-Underfull \hbox (badness 10000) in paragraph at lines 137--140
+] [48]
+Underfull \hbox (badness 10000) in paragraph at lines 135--138
 \OT1/cmr/m/n/12 / con-vnets).  http://cs231n.github.io/convolutional-
  []
 
 
-Underfull \hbox (badness 1558) in paragraph at lines 142--147
+Underfull \hbox (badness 1558) in paragraph at lines 140--145
 []\OT1/cmr/m/n/12 Alex Kendall, Matthew Grimes, and Roberto Cipolla.
  []
 
-[45]
-Underfull \hbox (badness 1205) in paragraph at lines 190--195
+[49]
+Underfull \hbox (badness 1205) in paragraph at lines 188--193
 \OT1/cmr/m/n/12 dro Gil-Jimenez, Hi-lario Gomez-Moreno, and Fran-cisco
  []
 
-[46] [47]) [48] (Prospectus.lof)
+[50] [51]) [52] (Prospectus.lof)
 \tf@lof=\write4
 \openout4 = `Prospectus.lof'.
 
- [49
+ [53
 
 
 ] (Prospectus.lot)
 \tf@lot=\write5
 \openout5 = `Prospectus.lot'.
 
- [50
+ [54
 
 
 ] (Prospectus.aux) ) 
 Here is how much of TeX's memory you used:
- 4883 strings out of 493307
- 75081 string characters out of 3136230
- 147199 words of memory out of 3000000
- 8305 multiletter control sequences out of 15000+200000
- 18912 words of font info for 71 fonts, out of 3000000 for 9000
+ 4866 strings out of 493307
+ 74951 string characters out of 3136230
+ 147201 words of memory out of 3000000
+ 8291 multiletter control sequences out of 15000+200000
+ 15791 words of font info for 57 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,16n,39p,463b,314s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 41i,16n,39p,392b,314s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files (x86)
 /MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/c
 m/cmcsc10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files (x86)/MiKTe
 X 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi6.
 pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts
-/type1/public/amsfonts/cm/cmmib10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Pr
-ogram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/pub
-lic/amsfonts/cm/cmr6.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files (x
-86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
-/cmsy10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Program Files (x86)/MiKTeX 2
-.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb
-><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/ty
-pe1/public/amsfonts/symbols/msbm10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/rsfs/rsfs10.pfb>
-Output written on Prospectus.pdf (51 pages, 1128460 bytes).
+/type1/public/amsfonts/cm/cmmib10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Pr
+ogram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/publ
+ic/amsfonts/cm/cmr8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files (
+x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/
+cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Program Files (x86)/MiKTeX
+ 2.9/fonts/type1/public/amsfonts/cm/cmti8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msb
+m10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/rsfs/rsfs10.pfb>
+Output written on Prospectus.pdf (55 pages, 1119603 bytes).
 PDF statistics:
- 263 PDF objects out of 1000 (max. 8388607)
+ 268 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  41 words of extra memory for PDF output out of 10000 (max. 10000000)
 

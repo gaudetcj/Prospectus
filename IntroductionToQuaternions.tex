@@ -1,4 +1,5 @@
 \chapter{Quaternions}
+This chapter presents a primer on quaternions so the reader can understand the theory developed in the research section.
 The quaternions are a number system that extends the complex numbers. 
 They were first described by Irish mathematician William Rowan Hamilton in 1843 and applied to mechanics in three-dimensional space. 
 In modern mathematical language, quaternions form a four-dimensional associative normed division algebra over the real numbers, and therefore also a domain.
@@ -6,7 +7,7 @@ In this chapter we will define operations on the quaternion algebra, draw connec
 
 
 \section{Quaternion Algebra}\label{s:quatalg}
-In 1833 Hamilton proposed complex numbers $\mathbb{C}$ be defined as the set $\mathbb{R}^2$ of ordered pairs $(a, b)$ of real numbers.
+In 1833 Hamilton proposed that complex numbers $\mathbb{C}$ be defined as the set $\mathbb{R}^2$ of ordered pairs $(a, b)$ of real numbers.
 He then began working to see if triplets $(a,b,c)$ could extend multiplication of complex numbers.
 In 1843 he discovered a way to multiply in four dimensions instead of three, but the multiplication lost commutativity.
 This construction is now known as quaternions.
@@ -17,13 +18,14 @@ Typically denoted as
 \label{eq:quaternion1}
 \end{equation}
 where $a$ is the real part, $(i,j,k)$ denotes the three imaginary axis, and $(b,c,d)$ denotes the three imaginary components.
-Sometimes $a$ is referred to as the scalar part and $(a,b,c)$ as the vector part.
+Sometimes $a$ is referred to as the scalar part and $(b,c,d)$ as the vector part.
+Note that we shall use the forms $bi + cj + dk$ and $(b,c,d)$ interchangeably.
 Quaternions are governed by the following arithmetic:
 \begin{equation}
 i^2=j^2=k^2=ijk=-1
 \label{eq:quarternion2}
 \end{equation}
-which, by enforcing distributivity, leads to the noncommutative multiplication rules
+which leads to the non-commutative multiplication rules
 \begin{equation}
 ij=k,~jk=i,~ki=j,~ji=-k,~kj=-i,~ik=-j
 \label{eq:quarternion3}
@@ -42,7 +44,7 @@ and the quaternion $p$
 p = p_0 + p_1\textit{i} + p_2\textit{j} + p_3\textit{k}.
 \label{eq:p}
 \end{equation}
-There addition is given by
+Their addition is given by
 \begin{equation}
 p + q = (p_0+q_0) + (p_1+q_1)\textit{i} + (p_2+q_2)\textit{j} + (p_3+q_3)\textit{k}.
 \label{eq:quataddition}
@@ -55,12 +57,13 @@ pq &= (p_0 + p_1\textit{i} + p_2\textit{j} + p_3\textit{k})(q_0 + q_1\textit{i} 
 &~~~ + p_0(q_1\textit{i} + q_2\textit{j} + q_3\textit{k}) + q_0(p_1\textit{i} + p_2\textit{j} + p_3\textit{k}) \nonumber \\
 &~~~ + (p_2q_3 - p_3q_2)\textit{i} + (p_3q_1 - p_1q_3)\textit{j} + (p_1q_2p - p_2q_1)\textit{k}. \nonumber
 \end{align*}
-This can be greatly simplified by utilizing the inner and cross products of two vectors in $\mathbb{R}^3$:
+It can be seen that the result is a quaternion by refactoring it, which we do by utilizing the inner and cross products of two vectors in $\mathbb{R}^3$ \cite{hungerford1980algebra}:
 \begin{equation}
 pq = p_0q_0 - \textbf{p}\cdot\textbf{q} + p_0\textbf{q} + q_0\textbf{p} + \textbf{p} \times \textbf{q}
 \label{eq:quatmult}
 \end{equation}
 where $\textbf{p} = (p_1,p_2,p_3)$ and $\textbf{q} = (q_1,q_2,q_3)$ are the vector parts of $p$ and $q$ respectively.
+The first two terms form the scalar part and the last three form the vector part.
 
 
 \subsection{Conjugate, Norm, and Inverse}
@@ -69,16 +72,43 @@ The \textit{conjugate} of $q$, denoted as $q^*$, is defined as a negation of the
 q^* = q_0 - \textbf{q}
 \label{eq:quatconjugate}
 \end{equation}
-and is constructed such that
-\begin{equation*}
-qq^* = q_0q_0.
-\end{equation*}
+and has the properties
+\begin{align*}
+(q^*)^* &= q_0 - (-\textbf{q}) = q, \\
+q + q^* &= 2q_0, \\
+q^*q &= (q_0 - \textbf{q})(q_0 + \textbf{q}) \\
+&= q_0q_0 - (-\textbf{q}) \cdot \textbf{q} + q_0\textbf{q} + (-\textbf{q})q_0 + (-\textbf{q}) \times \textbf{q} \\
+&= q_0^2 + \textbf{q} \cdot \textbf{q} \\
+&= q_0^2 + q_1^2 + q_2^2 + q_3^2 \\
+&= qq^*
+\end{align*}
 
 The \textit{norm} of a quaternion $q$, denoted as $|q|$, is the scalar
 \begin{equation*}
 |q| = \sqrt{q^*q}
+\label{eq:quatnorm}
 \end{equation*}
 and a quaternion is said to be a \textit{unit quaternion} if its norm is 1.
+For instance let $\mathbf{\hat{u}} = u_1i+u_2j+u_3k$ be any unit vector, then a unit quaternion is given by
+\begin{equation*}
+q_{unit} = \mbox{cos}\theta + \mathbf{\hat{u}}~\mbox{sin}\theta.
+\end{equation*}
+One can check by plugging this into \eqref{eq:quatnorm}
+\begin{align*}
+|q_{unit}| &= \sqrt{q_{unit}^* q_{unit}} \\
+&= \sqrt{\mbox{cos}^2\theta + u_1~\mbox{sin}^2\theta + u_2~\mbox{sin}^2\theta + u_3~\mbox{sin}^2\theta} \\
+&= \sqrt{\mbox{cos}^2\theta + \mbox{sin}^2\theta} \\
+&= 1.
+\end{align*}
+
+The norm of the product of two quaternions $p$ and $q$ is the product of the individual norms,
+\begin{align*}
+|pq|^2 &= (pq)(pq)^* \\
+&= pqq^*p^* \\
+&= p|q|^2p^* \\
+&= pp^*|q|^* \\
+&= |p|^* |q|^*.
+\end{align*}
 
 The \textit{inverse} of a quaternion $q$ is defined as 
 \begin{equation*}
@@ -146,17 +176,16 @@ This gives us some hints that quaternions may also be able to perform rotation o
 
 \subsection{Quaternion Rotation Operation}
 We will stick to interpretations of quaternions in $\mathbb{R}^3$ as it is easier to visualize, but how can a quaternion, which exists in $\mathbb{R}^4$, operate on a 3D vector?
-Recall that the imaginary components of a quaternion is called the vector part and a vector $\textbf{v} \in \mathbb{R}^3$ is a \textit{pure quaternion} whose real part is zero.
+Recall that the imaginary components of a quaternion are called the vector part and a vector $\textbf{v} \in \mathbb{R}^3$ is a \textit{pure quaternion} whose real part is zero.
 
 \begin{figure*}[!h]
 	\centering
 		\includegraphics[width=1.0\textwidth]{figures/r3.png}
-	\caption{$\mathbb{R}^3$ can be viewed as a subspace of quaternions called pure quaternions which have a real part of zero.}
+	\caption{$\mathbb{R}^3$ can be viewed as a subspace of quaternions called pure quaternions which have a real part of zero. \cite{jia2008quaternions}}
 	\label{f:r3}
 \end{figure*}
 
-Using the unit quaternion $q$ let us define a function $L_q:~\mathbb{R}^3 \rightarrow \mathbb{R}^3$ on vectors $\textbf{v} \in \mathbb{R}^3
-$:
+Using the unit quaternion $q$ let us define a function $L_q:~\mathbb{R}^3 \rightarrow \mathbb{R}^3$ on vectors $\textbf{v} \in \mathbb{R}^3$ \cite{hungerford1980algebra}:
 \begin{align}
 L_q(\textbf{v}) &= q\textbf{v}q^* \nonumber \\
 &= (q_0^2 - ||\textbf{q}||^2)\textbf{v} + 2(\textbf{q}\cdot\textbf{v})\textbf{q} + 2q_0(\textbf{q} \times \textbf{v}). 
@@ -184,7 +213,7 @@ For any unit quaternion
 q = q_0 + \textbf{q} = \mbox{cos}\frac{\theta}{2} + \mathbf{\hat{u}}\mbox{sin}\frac{\theta}{2},
 \label{eq:unitquat}
 \end{equation}
-and for any vector $\textbf{v} \in \mathbb{R}^3$ the result of the function
+where $\mathbf{\hat{u}} = u_1i+u_2j+u_3k$ is any unit vector and for any vector $\textbf{v} \in \mathbb{R}^3$ the result of the function
 \begin{equation*}
 L_q(\textbf{v}) = q\textbf{v}q^*
 \end{equation*}
@@ -195,7 +224,7 @@ on $\textbf{v}$ is equivalent to a rotation of the vector through an angle $\the
 Given a vector $\textbf{v} \in \mathbb{R}^3$, we decompose it as $\textbf{v} = \textbf{a} + \textbf{n}$, where $\textbf{a}$ is the component along the vector $\textbf{q}$ and $\textbf{n}$ is the component normal to $\textbf{q}$. 
 Then we show that under the function $L_q$, $\textbf{a}$ is invariant, while $\textbf{n}$ is rotated about $\textbf{q}$ through an angle $\theta$. 
 
-Earlier we showed that $\textbf{a}$ is invariant under $L_q$ so let us see how $L_q$ transform $\textbf{n}$.
+Earlier we showed that $\textbf{a}$ is invariant under $L_q$ so let us see how $L_q$ transforms $\textbf{n}$.
 \begin{align*}
 L_q(\textbf{n}) &= (q_0^2 - ||\textbf{q}||^2)\textbf{n} + 2(\textbf{q} \cdot \textbf{n})\textbf{q} + 2q_0(\textbf{q} \times \textbf{n}) \\
 &= (q_0^2 - ||\textbf{q}||^2)\textbf{n} + 2q_0(\textbf{q} \times \textbf{n}) \\
@@ -216,8 +245,17 @@ Then rewriting \eqref{eq:p11} we arrive at
 L_q(\textbf{n}) &= \left( \mbox{cos}^2 \frac{\theta}{2} - \mbox{sin}^2 \frac{\theta}{2} \right) \textbf{n} + \left( 2\mbox{cos} \frac{\theta}{2} \mbox{sin} \frac{\theta}{2} \right) \textbf{n}_{\bot} \\
 &= \mbox{cos}~\theta \textbf{n} + \mbox{sin}~\theta \textbf{n}_{\bot}.
 \end{align*}
-The resulting vector is a rotation of $\textbf{n}$ through an angle $\theta$ in the plane defined by $\textbf{n}$ and $\textbf{n}_{\bot}$.
+The resulting vector is a rotation of $\textbf{n}$ through an angle $\theta$ in the plane defined by $\textbf{n}$ and $\textbf{n}_{\bot}$ \cite{jia2008quaternions}.
 \end{proof}
+
+
+\section{Conclusion}\label{s:quatConc}
+In this chapter we gave the reader the needed information of the quaternion algebra for theory sections to follow.
+We have discussed some motivation for the representational power of quaternions by showing how they can encode rotations in a compact form.
+It was also hinted that the structure of quaternion algebra benefits CNNs specifically.
+This comes from the multiplication rule for quaternions, which makes the convolution operation in the CNN treat the channels of the image as a single entity. 
+We will show this in detail in the next chapter within the quaternion convolution Section \ref{s:qc}.
+
 
 
 

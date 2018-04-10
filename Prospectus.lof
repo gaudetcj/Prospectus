@@ -1,13 +1,14 @@
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {1.1}{\ignorespaces $\mathbb {R}^3$ can be viewed as a subspace of quaternions called pure quaternions which have a real part of zero.\relax }}{10}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces The architecture for LeNet-5, which is composed of repeating convolution and pooling layers.\relax }}{14}
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Convolution operation performed on a single feature location and one convolution kernel \cite {convolution}.\relax }}{15}
-\contentsline {figure}{\numberline {2.3}{\ignorespaces Example max pooling operation with a size of 2x2. A 2x2 window is moved over the input with a stride of 2 and the maximum value of the window is taken \cite {maxpooling}.\relax }}{16}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces The architecture for LeNet-5, which is composed of repeating convolution and pooling layers.\relax }}{9}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Convolution operation performed on a single feature location and one convolution kernel \cite {convolution}.\relax }}{10}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Example max pooling operation with a size of 2x2. A 2x2 window is moved over the input with a stride of 2 and the maximum value of the window is taken \cite {maxpooling}.\relax }}{11}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Examples of some of the discussed activation functions. From top to bottom and left to right: ReLU, LReLU, PReLU, and ELU. \cite {}\relax }}{21}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces An inception block from \cite {szegedy2015going}. Notice the 1x1 convolutions before the 3x3 and 5x5 convolutions are reducing the number of feature channels. This reduces the number of multiplications that must be performed.\relax }}{24}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces A residual block from \cite {he2015deep}.\relax }}{24}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Examples of some of the discussed activation functions. From top to bottom and left to right: ReLU, LReLU, PReLU, and ELU.\relax }}{16}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces An inception block from \cite {szegedy2015going}. Notice the 1x1 convolutions before the 3x3 and 5x5 convolutions are reducing the number of feature channels. This reduces the number of multiplications that must be performed.\relax }}{21}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces A residual block from \cite {he2015deep}.\relax }}{22}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces An illustration of quaternion convolution.\relax }}{31}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces $\mathbb {R}^3$ can be viewed as a subspace of quaternions called pure quaternions which have a real part of zero. \cite {jia2008quaternions}\relax }}{29}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces An illustration of quaternion convolution.\relax }}{37}
 \addvspace {10\p@ }

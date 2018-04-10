@@ -1,18 +1,10 @@
-\chapter{Work Completed}
-In this chapter we list the results of our research so far and then discuss proposed research paths moving forward, as well as time lines to complete said tasks.
+\chapter{Quaternion Networks}
+At this point we have introduced the CNNs and their more recent advances as well as the basic concepts of quaternions.
+In this chapter we will go through the motivation for constructing a neural network with quaternion values.
+With the motivation in place we will then go through the known quaternion convolution operation before moving to our novel contributions of quaternion weight initialization and quaternion batch-normalization.
+These pieces are then used to run some benchmark experiments and compared against real and complex valued networks.
+The quaternion network outperforms both on two classification tasks and a segmentation task.
 
-\section{Introduction}
-We have shown several advances in neural networks in the last section and the majority of work done is real-values.
-We shall go through some work that shows the promise of complex and hyper-complex numbers to motivate our work.
-Using complex numbers in recurrent neural networks (RNNs) has been shown to increase learning speed and provide a more noise robust memory retrieval mechanism \cite{arjovsky2016unitary, danihelka2016associative, wisdom2016full}.
-The first formulation of complex batch normalization and complex weight initialization is presented by \cite{trabelsi2017deep} where they achieve some state of the art results on the MusicNet data set.
-Hyper-complex numbers are less explored in neural networks, but have seen use in manual image and signal processing techniques \cite{bulow1999hypercomplex, sangwine2000colour, bulow2001hypercomplex}.
-Examples of using quaternion values in networks is mostly limited to architectures that take in quaternion inputs or predict quaternion outputs, but do not have quaternion weight values \cite{rishiyur2006neural, kendall2015posenet}. 
-There are some more recent examples of building models that use quaternions represented as real-values. 
-In \cite{parcollet2016quaternion} they used a quaternion multi-layer perceptron (QMLP) for document understanding and \cite{minemoto2017feed} uses a similar approach in processing multi-dimensional signals. 
-
-Building on \cite{trabelsi2017deep} our contribution in this paper is to formulate and implement quaternion convolution, batch normalization, and weight initialization \footnote{Source code located at https://github.com/gaudetcj/DeepQuaternionNetworks}.
-There arises some difficulty over complex batch normalization that we had to overcome as their is no analytic form for our inverse square root matrix.
 
 \section{Motivation and Related Work}
 The ability of quaternions to effectively represent spatial transformations and analyze multi-dimensional signals makes them promising for applications in artificial intelligence.
@@ -30,7 +22,8 @@ Bulow and Sommer \cite{bulow2001hypercomplex} used the higher complexity represe
 Another use of quaternion filters is shown in \cite{sangwine2000colour} where they introduce a new class of filter based on convolution with hyper-complex masks, and present three color edge detecting filters. 
 These filters rely on a three-space rotation about the grey line of RGB space and when applied to a color image produce an almost greyscale image with color edges where the original image had a sharp change of color.
 More quaternion filter use is shown in \cite{shi2007quaternion} where they show that it is effective in the context of segmenting color images into regions of similar color texture. 
-They state the advantage of using quaternion arithmetic is that a color can be represented and analyzed as a single entity, which we will see holds for quaternion convolution in a convolutional neural network architecture as well in Section \ref{s:qc}.
+They state the advantage of using quaternion arithmetic is that a color can be represented and analyzed as a single entity (by assigning each color channel to an imaginary axis).
+This comes from the structure of quaternion multiplication that was mentioned in Section \ref{s:quatConc}, which we will show holds for quaternion convolution in a convolutional neural network architecture as well in Section \ref{s:qc}.
 
 A quaternionic extension of a feed forward neural network, for processing multi-dimensional signals, is shown in \cite{minemoto2017feed}.
 They expect that quaternion neurons operate on multi-dimensional signals as single entities, rather than real-valued neurons that deal with each element of signals independently.
@@ -63,7 +56,7 @@ The 4~x~4 matrix can be written as
  0 & 0 & 1 & 0 \\
  0 & 0 & 0 & 1 
 \end{bmatrix}
-\nonumber \\ &+ b 
+\nonumber + b 
 \begin{bmatrix}
  0 & -1 & 0 & 0 \\ 
  1 & 0 & 0 & 0 \\
@@ -77,7 +70,7 @@ The 4~x~4 matrix can be written as
  1 & 0 & 0 & 0 \\
  0 & -1 & 0 & 0 
 \end{bmatrix}
-\nonumber \\ &+ d
+\nonumber + d
 \begin{bmatrix}
  0 & 0 & 0 & -1 \\ 
  0 & 0 & -1 & 0 \\
@@ -100,14 +93,13 @@ As the complex chain rule is shown in \cite{trabelsi2017deep}, we provide the qu
 
 
 \subsection{Quaternion Convolution}\label{s:qc}
-Convolution in the quaternion domain is done by convolving a quaternion filter matrix $\textbf{W}=\textbf{A}+\textit{i}\textbf{B}+\textit{j}\textbf{C}+\textit{k}\textbf{D}$ by a quaternion vector $\textbf{h}=\textbf{w}+\textit{i}\textbf{x}+\textit{j}\textbf{y}+\textit{k}\textbf{z}$. 
+Convolution in the quaternion domain is done by convolving a quaternion filter matrix $\textbf{W}=\textbf{A}+\textit{i}~\textbf{B}+\textit{j}~\textbf{C}+\textit{k}~\textbf{D}$ by a quaternion vector $\textbf{h}=\textbf{w}+\textit{i}~\textbf{x}+\textit{j}~\textbf{y}+\textit{k}~\textbf{z}$. 
 Performing the convolution by using the distributive property and grouping terms one gets
 \begin{align}
 \textbf{W}\ast \textbf{h} = &~(\textbf{A}\ast\textbf{w}-\textbf{B}\ast\textbf{x}-\textbf{C}\ast\textbf{y}-\textbf{D}\ast\textbf{z}) + \nonumber \\ 
 &\textit{i}(\textbf{A}\ast\textbf{x}+\textbf{B}\ast\textbf{w}+\textbf{C}\ast\textbf{z}-\textbf{D}\ast\textbf{y}) + \nonumber \\
 &\textit{j}(\textbf{A}\ast\textbf{y}-\textbf{B}\ast\textbf{z}+\textbf{C}\ast\textbf{w}+\textbf{D}\ast\textbf{x}) + \nonumber \\
 &\textit{k}(\textbf{A}\ast\textbf{z}+\textbf{B}\ast\textbf{y}-\textbf{C}\ast\textbf{x}+\textbf{D}\ast\textbf{w}).
-\label{eq:convolve1}
 \end{align}
 Using a matrix to represent the components of the convolution we have:
 \begin{equation}
@@ -131,9 +123,18 @@ Using a matrix to represent the components of the convolution we have:
  \textbf{y} \\
  \textbf{z}
 \end{bmatrix}
-\label{eq:}
+\label{eq:qconvolve2}
 \end{equation}
-An example is shown in Fig.~\ref{f:quatconv} where one can see how quaternion convolution forces a linear depthwise mixture of the channels. This is similar to a mixture of standard convolution and depthwise separable convolution from \cite{chollet2016xception}. This reuse of filters on every layer and combination may help extract texture information across channels as seen in \cite{shi2007quaternion}.
+
+An example is shown in Fig.~\ref{f:quatconv}, which is useful to visualize one of the main motivational factors of quaternions for CNNs.
+Notice that the result of the quaternion convolution produces a unique linear combination of each axis per the result of a single axis.
+This comes from the structure of quaternion multiplication and is forcing each axis of the kernel to interact with each axis of the image.
+Real-valued convolution simply multiplies each channel of the kernel with the corresponding channel of the image.
+The quaternion convolution is similar to a mixture of standard convolution and depthwise separable convolution from \cite{chollet2016xception}. 
+This reuse of filters on every axis and combination may help extract texture information across channels as seen in \cite{shi2007quaternion}.
+One can think in terms of a RGB where the greyscale can be the real axis and the RGB channels can be the $i, j, k$ axes.
+Then a quaternion kernel convolved against this quaternion image will view the colors as a single entity, unlike standard real-valued convolution.
+Since a quaternion can be thought of as a vector, the quaternion kernels and feature maps can be thought of vector as well.
 
 \begin{figure*}
 	\centering
@@ -161,7 +162,7 @@ Now our whitening is accomplished by multiplying the \textbf{0}-centered data ($
 \label{eq:white4d}
 \end{equation}
 where \textbf{W} is one of the matrices from the Cholesky decomposition of $\textbf{V}^{-1}$ where \textbf{V} is the covariance matrix given by:
-\begin{align}
+\begin{align*}
 \textbf{V}
 =&
 \begin{bmatrix}
@@ -170,37 +171,34 @@ where \textbf{W} is one of the matrices from the Cholesky decomposition of $\tex
  V_{jr} & V_{ji} & V_{jj} & V_{jk} \\
  V_{kr} & V_{ki} & V_{kj} & V_{kk}
 \end{bmatrix} \nonumber \\
-=&~~  \left[ 
+&=\left[ 
 \begin{matrix*}[l]
-\mbox{Cov}(\mathscr{R}\{\textbf{x}\}, \mathscr{R}\{\textbf{x}\}) \\
-\mbox{Cov}(\mathscr{I}\{\textbf{x}\}, \mathscr{R}\{\textbf{x}\}) \\
-\mbox{Cov}(\mathscr{J}\{\textbf{x}\}, \mathscr{R}\{\textbf{x}\}) \\
-\mbox{Cov}(\mathscr{K}\{\textbf{x}\}, \mathscr{R}\{\textbf{x}\}) \\
-\end{matrix*} \right. \nonumber \\ 
-&~~~~~~
+\mbox{C}(\mathscr{R}\{\textbf{x}\}, \mathscr{R}\{\textbf{x}\}) \\
+\mbox{C}(\mathscr{I}\{\textbf{x}\}, \mathscr{R}\{\textbf{x}\}) \\
+\mbox{C}(\mathscr{J}\{\textbf{x}\}, \mathscr{R}\{\textbf{x}\}) \\
+\mbox{C}(\mathscr{K}\{\textbf{x}\}, \mathscr{R}\{\textbf{x}\}) \\
+\end{matrix*} \right. \nonumber 
 \begin{matrix*}[l]
-\mbox{Cov}(\mathscr{R}\{\textbf{x}\}, \mathscr{I}\{\textbf{x}\}) \\
-\mbox{Cov}(\mathscr{I}\{\textbf{x}\}, \mathscr{I}\{\textbf{x}\}) \\
-\mbox{Cov}(\mathscr{J}\{\textbf{x}\}, \mathscr{I}\{\textbf{x}\}) \\
-\mbox{Cov}(\mathscr{K}\{\textbf{x}\}, \mathscr{I}\{\textbf{x}\}) \\
-\end{matrix*} \nonumber \\
-&~~~~~~~
+\mbox{C}(\mathscr{R}\{\textbf{x}\}, \mathscr{I}\{\textbf{x}\}) \\
+\mbox{C}(\mathscr{I}\{\textbf{x}\}, \mathscr{I}\{\textbf{x}\}) \\
+\mbox{C}(\mathscr{J}\{\textbf{x}\}, \mathscr{I}\{\textbf{x}\}) \\
+\mbox{C}(\mathscr{K}\{\textbf{x}\}, \mathscr{I}\{\textbf{x}\}) \\
+\end{matrix*} \nonumber 
 \begin{matrix*}[l]
-\mbox{Cov}(\mathscr{R}\{\textbf{x}\}, \mathscr{J}\{\textbf{x}\}) \\
-\mbox{Cov}(\mathscr{I}\{\textbf{x}\}, \mathscr{J}\{\textbf{x}\}) \\
-\mbox{Cov}(\mathscr{J}\{\textbf{x}\}, \mathscr{J}\{\textbf{x}\}) \\
-\mbox{Cov}(\mathscr{K}\{\textbf{x}\}, \mathscr{J}\{\textbf{x}\}) \\
-\end{matrix*} \nonumber \\
-&~~~~~~~~ \left.
+\mbox{C}(\mathscr{R}\{\textbf{x}\}, \mathscr{J}\{\textbf{x}\}) \\
+\mbox{C}(\mathscr{I}\{\textbf{x}\}, \mathscr{J}\{\textbf{x}\}) \\
+\mbox{C}(\mathscr{J}\{\textbf{x}\}, \mathscr{J}\{\textbf{x}\}) \\
+\mbox{C}(\mathscr{K}\{\textbf{x}\}, \mathscr{J}\{\textbf{x}\}) \\
+\end{matrix*} \nonumber  \left.
 \begin{matrix*}[l]
-\mbox{Cov}(\mathscr{R}\{\textbf{x}\}, \mathscr{K}\{\textbf{x}\}) \\
-\mbox{Cov}(\mathscr{I}\{\textbf{x}\}, \mathscr{K}\{\textbf{x}\}) \\
-\mbox{Cov}(\mathscr{J}\{\textbf{x}\}, \mathscr{K}\{\textbf{x}\}) \\
-\mbox{Cov}(\mathscr{K}\{\textbf{x}\}, \mathscr{K}\{\textbf{x}\}) \\
+\mbox{C}(\mathscr{R}\{\textbf{x}\}, \mathscr{K}\{\textbf{x}\}) \\
+\mbox{C}(\mathscr{I}\{\textbf{x}\}, \mathscr{K}\{\textbf{x}\}) \\
+\mbox{C}(\mathscr{J}\{\textbf{x}\}, \mathscr{K}\{\textbf{x}\}) \\
+\mbox{C}(\mathscr{K}\{\textbf{x}\}, \mathscr{K}\{\textbf{x}\}) \\
 \end{matrix*}  \right]
 \label{eq:V4d}
-\end{align}
-where Cov$(\cdot)$ is the covariance and $\mathscr{R}\{x\}$, $\mathscr{I}\{x\}$, $\mathscr{J}\{x\}$, and $\mathscr{K}\{x\}$ are the real, $i$, $j$, and $k$ components of $\textbf{x}$ respectively.
+\end{align*}
+where C$(\cdot)$ is the covariance and $\mathscr{R}\{x\}$, $\mathscr{I}\{x\}$, $\mathscr{J}\{x\}$, and $\mathscr{K}\{x\}$ are the real, $i$, $j$, and $k$ components of $\textbf{x}$ respectively.
 
 Real-valued batch normalization also uses two learned parameters, $\beta$ and $\gamma$. 
 Our shift parameter {\boldmath$\beta$} must shift a quaternion value so it is a quaternion value itself with real, $i$, $j$, and $k$ as learnable components. 

@@ -13,7 +13,7 @@ In these regions of the input space, even a large change in the input will produ
 This becomes much worse when we stack multiple layers of such non-linearities on top of each other, leading to difficulty in training deeper networks.
 We will go through a few new activation functions, whose plots are shown in Fig.~\ref{f:activations}.
 
-\paragraph{ReLU:}
+\subsection{ReLU:}
 The most notable non-saturated activation function is the rectified linear unit (ReLU) \cite{nair2010rectified}. 
 This is defined as:
 \begin{equation}
@@ -21,13 +21,9 @@ f(x) = \mbox{max}(0,x).
 \label{e:relu}
 \end{equation}
 The benefits of this unit include: faster calculation since the max($\cdot$) operation is faster than sigmoid or tanh, it creates sparsity in the hidden units by giving true zero values often to help sparse representations form, and does not suffer from vanishing gradients in deep models. 
-The vanishing gradient problem
-
-
-
 ReLU has been shown to work better than sigmoid or tanh in several tasks and shows fast convergence even without pretraining \cite{glorot2011deep,krizhevsky2012imagenet,zeiler2013rectified,maas2013rectifier}.
 
-\paragraph{LReLU:}
+\subsection{LReLU:}
 The ReLU has zero gradient whenever its inputs add to a negative value or when a large gradient changes the weights to large negatives value making future input into the unit always have a negative value. 
 These units will never be updated and learning will not occur, which can be a problem. 
 Mass \textit{et al}. 
@@ -41,7 +37,7 @@ f(x) = \mbox{max}(0,x) + \lambda ~\mbox{min}(0,x)
 where $\lambda \in (0,1)$ and is predefined per model. 
 This unit allows for small gradients when the unit is not active, which helps the problems of the ReLU unit.
 
-\paragraph{PReLU:}
+\subsection{PReLU:}
 Rather than trying to find an optimal value for $\lambda$ in the LReLU, He et al. \cite{he2015delving} introduced the Parametric ReLU which adapts the $\lambda$ during training. 
 It is defined as:
 \begin{equation}
@@ -51,7 +47,7 @@ f(x) = \mbox{max}(0,x) + \lambda_k ~\mbox{min}(0,x)
 where $\lambda_k$ is the $k$-th channel. 
 Since the number of parameters in networks is often very large compared to the number of total channels, the extra computational cost to learn the values of $\lambda_k$'s is not much.
 
-\paragraph{ELU:}
+\subsection{ELU:}
 Next is the Exponential Linear Unit (ELU) \cite{clevert2015fast}. 
 ELUs are similar to the above mentioned units, but they have a saturating function on their negative side. 
 The saturation function decreases the variation of the units if they are not activated, which gives those units a chance to update while making them more robust to noise. 
@@ -62,7 +58,7 @@ f(x) = \mbox{max}(0,x) + \mbox{min}(0,\lambda(e^{x}-1))
 \end{equation}
 where $\lambda$ is predefined as in the LReLU.
 
-\paragraph{PELU:}
+\subsection{PELU:}
 A natural extension of the ELU is the Parametric ELU \cite{trottier2016parametric}. 
 Unlike the PReLU which learns one parameter to modify the LReLU, the PELU learns two parameters during training to modify the ELU. 
 This gives the network more control over the vanishing gradients. 
@@ -78,16 +74,71 @@ In \cite{trottier2016parametric} it is shown that PELU does a better job than al
 \begin{figure}[h!]
 	\centering
 		\includegraphics[width=0.85\textwidth]{figures/activations.png}
-	\caption{Examples of some of the discussed activation functions. From top to bottom and left to right: ReLU, LReLU, PReLU, and ELU. \cite{}}
+	\caption{Examples of some of the discussed activation functions. From top to bottom and left to right: ReLU, LReLU, PReLU, and ELU.}
 	\label{f:activations}
 \end{figure}
+
+
+\section{Weight Initialization}
+The parameters of a network are randomly initialized because if they were not, there would exist symmetry among the parameters and nothing useful would be learned.
+The deeper and more complex the network, the more parameters one is attempting to optimize.
+Each layer of the network will scale its input by some constant $k$, meaning the final layer will scale the original input by $L^k$ where $L$ is the number of layers.
+It is clear that for deep network that values $k > 1$ will have very large outputs, while values $k < 1$ lead to outputs to diminish to zero.
+Because of this determining an optimal way to initialize these parameters was vital to the network converging to a good set of weights.
+There are two commonly used schemes we will mention in this chapter, Glorot and Bengio \cite{glorot2010understanding} and a modification to that by He et al. \cite{he2015delving}.
+
+\subsection{Glorot Initialization}
+A big assumption in the derivation of this initialization scheme is that the neurons are linear functions.
+Let $X$ be the input to $n$ linear neurons with weights $W$ that produce output $Y$
+\begin{equation*}
+Y = W_1X_1 + W_2X_2 + ~...~ + W_nX_n.
+\end{equation*}
+To find the variance of $Y$ first observe that
+\begin{equation*}
+\mbox{Var}(W_iX_i) = \mbox{Var}(W_i)\mbox{Var}(X_i)
+\end{equation*}
+and if assumed that $X_i$ and $W_i$ are all independently and identically distributed one can write $Y$ as
+\begin{equation*}
+\mbox{Var}(Y) = \mbox{Var}(W_1X_1 + W_2X_2 + ~...~ + W_n+X_n) = n\mbox{Var}(W_i)\mbox{Var}(X_i).
+\end{equation*}
+This tells us under these assumptions that the variance of the input is the variance of the input scaled by $n\mbox{Var}(W_i)$, so if we want the variance input and output to be the same the variance of the weights should be
+\begin{equation*}
+\mbox{Var}(W_i) = \frac{1}{n_{in}}
+\end{equation*}
+where we introduce the subscript on $n$ to denote that this is the count of neurons going into the layer.
+The reason for that is because the above must also be done for the backpropagated pass where the same formula is found except $n$ is the number of neurons going out of the layer
+\begin{equation*}
+\mbox{Var}(W_i) = \frac{1}{n_{out}}.
+\end{equation*}
+These two constrains can only be satisfied if $n_in = n_out$, so Glorot and Bengio take the average
+\begin{equation}
+\mbox{Var}(W_i) = \frac{2}{n_{in} + n_{out}}.
+\label{eq:glorotinit}
+\end{equation}
+In practice it turns out that the backpropagation pass is less important to preserve compared to the forward pass.
+Because of this and the fact that finding $n_{out}$ is expensive to find in most software implementations the Glorot initialization is often shortened to
+\begin{equation}
+\mbox{Var}(W_i) = \frac{1}{n_{in}}.
+\label{eq:glorotshort}
+\end{equation}
+
+
+\subsection{He Initialization}
+He et al. set out to define a good initialization solely for the ReLU activation function.
+They build on Glorot and Bengio's work by noting that the ReLU is almost a linear activation function, but is zero for half of its input, so you need to double the size of weight variance to keep the signal’s variance constant.
+This leads to 
+\begin{equation}
+\mbox{Var}(W_i) = \frac{2}{n_{in}}.
+\label{eq:heinit}
+\end{equation}
+It is of note that using this initialization scheme they were the first to surpass human level performance on the ImageNet 2012 classification challenge.
 
 
 \section{Regularization}
 Some of the biggest improvements to NNs have been through regularizing the network in different ways to prevent overfitting.
 Overfitting means that the network learns the training set well, but performs poorly on any new or unseen data.
 
-\paragraph{Dropout:}
+\subsection{Dropout}
 Introduced by Hinton \textit{et al.} \cite{hinton2012improving}, Dropout has shown to be very effective at improving network results and reducing overfitting. 
 In their paper Dropout is applied to fully-connected layers where the output of the Dropout layer is 
 \begin{equation}
@@ -102,7 +153,7 @@ Similar to the learned parameters of the activation functions, \cite{ba2013adapt
 Finally, in \cite{tompson2015efficient} they modify Dropout with CNNs specifically in mind by extending the Dropout value across the entire feature map, meaning that during training each feature map has a $p$ chance of being completely ignored for each update step. 
 They call this method Spatial Dropout and it seems to help the network learn more general features, which improves results on limited size data sets.
 
-\paragraph{Batch Normalization:}
+\subsection{Batch Normalization}
 It is standard practice to normalize data to have zero-mean and unit variance before feeding it into a NN, but as the data goes through the network, especially deep networks, the data will lose this property. 
 This change to the input distribution is known as internal covariance shift. 
 To keep data normed through the network \cite{ioffe2015batch} introduced an efficient method called Batch Normalization (BN). 
@@ -127,7 +178,7 @@ By making sure no inputs get too large or small BN makes it possible to use satu
 \section{Architecture Improvements}
 There are a couple of recent architecture improvements to NNs that both help with speed (by lowering computational cost for similar results) and immensely with vanishing gradients.
 
-\paragraph{Network-In-Network} 
+\subsection{Network-In-Network} 
 The first was introduced in \cite{lin2013network} where they use fully connected layers on the outputs of each convolution operation called Network-in-network. 
 The idea was an alternative to stacking multiple convolutional layers (each with a number of their own filters) to get deepness in a neural network model, by replacing each filter with a multi-layer perceptron, which is essentially a small neural network that slides across the image like a convolutional filter. 
 The math works out so that a $1\times 1\times U$ convolution filter convolved across a $V$-channel image emulates a $U\times V$ matrix multiplied by each $V$-channel pixel, which is the same as running a single-layer neural network across every pixel of your input as if each pixel were an example vector in a training set. 
@@ -135,8 +186,8 @@ Chaining together such $1\times 1\times U$ convolutions, you get the same result
 The idea from the paper was to turn a convolution filter which is a generalized linear model, into a non-linear model. 
 It allows the network to combine channels from previous layer in a non-linear fashion, which can lead to more advanced features.
 
-\paragraph{Inception Blocks}
-Google's team was inspired by the Network-in-network paper and saw the power of using the 1x1 convolutions not only for non-linearaity, but to reduce computational burden of deep models by using the cross-channel pooling aspect to reduce their feature maps before convolution layers. 
+\subsection{Inception Blocks}
+Google's team was inspired by the Network-in-network paper and saw the power of using the 1x1 convolutions not only for non-linearity, but to reduce computational burden of deep models by using the cross-channel pooling aspect to reduce their feature maps before convolution layers. 
 In \cite{szegedy2015going} Christian Szegedy and his team introduced the Inception module as seen in Fig.\ref{f:inceptionblock}. 
 \begin{figure}[h!]
 	\centering
@@ -145,7 +196,7 @@ In \cite{szegedy2015going} Christian Szegedy and his team introduced the Incepti
 	\label{f:inceptionblock}
 \end{figure}
 
-\paragraph{Residual Connections}
+\subsection{Residual Connections}
 Another work that focused on fixing the vanishing gradient problem of deep networks was Residual Nets (ResNets) \cite{he2015deep} where they used what is now called shortcut connections. 
 These connections were inspired by Long Short Term Memory (LSTM) units, a type of recurrent neural network unit that feeds information back into itself with weighted gates. 
 Instead of using weighted gates shortcut connections pass information with the identify function so it is untransformed. 
@@ -162,8 +213,12 @@ This design allows the gradients to be directly propagated to shallower units al
 \end{figure}
 
 
-\section{Open Questions}
+\section{Conclusion}
+In this chapter we covered many advanced concepts of CNNs that have led to large improvements in their performance.
+The big areas that have seen improvement are the activation functions, weight initializations, regularization, and overall architecture improvements.
+There are other areas to possibly find improvements however.
 At present, the vast majority of all work done in neural networks is based on real-valued operations and representations.
 There have been some recent work exploring the use of complex numbers and very few the use of hyper-complex number (quaternions) showing promising results due to these numbers having greater representational power to the reals.
 In \cite{trabelsi2017deep} they present the first complex forms of complex batch-normalization and complex weight initialization strategies to use along with complex convolution to create a fully complex deep convolutional network.
 They achieve some state-of-the-art results over the real-valued counter part models, which leads to the question of creating forms for quaternion batch-normalzation and weight initialization for potentially better results.
+In the next chapter we will give the reader a basic foundation of the quaternion algebra to build up to the theory of these quaternion network layers.

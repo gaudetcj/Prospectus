@@ -1,50 +1,57 @@
-\contentsline {chapter}{\numberline {1}Quaternions}{6}
-\contentsline {section}{\numberline {1.1}Quaternion Algebra}{6}
-\contentsline {subsection}{\numberline {1.1.1}Addition and Multiplication}{7}
-\contentsline {subsection}{\numberline {1.1.2}Conjugate, Norm, and Inverse}{8}
-\contentsline {section}{\numberline {1.2}Geometric Representation of Quaternions}{8}
-\contentsline {subsection}{\numberline {1.2.1}Complex Algebra}{8}
-\contentsline {subsection}{\numberline {1.2.2}Complex Rotation Operation}{9}
-\contentsline {subsection}{\numberline {1.2.3}Quaternion Rotation Operation}{10}
-\contentsline {chapter}{\numberline {2}Introduction To Convolutional Neural Networks}{13}
-\contentsline {section}{\numberline {2.1}Basic CNN Components}{13}
-\contentsline {subsection}{\numberline {2.1.1}Convolutional Layer}{14}
-\contentsline {subsection}{\numberline {2.1.2}Pooling Layer}{15}
-\contentsline {subsection}{\numberline {2.1.3}CNN Common Tasks}{16}
-\contentsline {chapter}{\numberline {3}State of the Art}{18}
-\contentsline {section}{\numberline {3.1}Activation Functions}{18}
-\contentsline {paragraph}{ReLU:}{19}
-\contentsline {paragraph}{LReLU:}{19}
-\contentsline {paragraph}{PReLU:}{19}
-\contentsline {paragraph}{ELU:}{20}
-\contentsline {paragraph}{PELU:}{20}
-\contentsline {section}{\numberline {3.2}Regularization}{20}
-\contentsline {paragraph}{Dropout:}{20}
-\contentsline {paragraph}{Batch Normalization:}{22}
-\contentsline {section}{\numberline {3.3}Architecture Improvements}{22}
-\contentsline {paragraph}{Network-In-Network}{23}
-\contentsline {paragraph}{Inception Blocks}{23}
-\contentsline {paragraph}{Residual Connections}{23}
-\contentsline {section}{\numberline {3.4}Open Questions}{25}
-\contentsline {chapter}{\numberline {4}Work Completed}{26}
-\contentsline {section}{\numberline {4.1}Introduction}{26}
-\contentsline {section}{\numberline {4.2}Motivation and Related Work}{27}
-\contentsline {section}{\numberline {4.3}Quaternion Network Components}{28}
-\contentsline {subsection}{\numberline {4.3.1}Quaternion Representation}{29}
-\contentsline {subsection}{\numberline {4.3.2}Quaternion Differentiability}{30}
-\contentsline {subsection}{\numberline {4.3.3}Quaternion Convolution}{30}
-\contentsline {subsection}{\numberline {4.3.4}Quaternion Batch-Normalization}{32}
-\contentsline {subsection}{\numberline {4.3.5}Quaternion Weight Initialization}{34}
-\contentsline {section}{\numberline {4.4}Experimental Results}{35}
-\contentsline {subsection}{\numberline {4.4.1}Classification}{35}
-\contentsline {subsection}{\numberline {4.4.2}Segmentation}{37}
-\contentsline {section}{\numberline {4.5}Conclusions and Proposed Research}{37}
-\contentsline {chapter}{\numberline {5}Appendix}{39}
-\contentsline {section}{\numberline {5.1}The Generalized Quaternion Chain Rule for a Real-Valued Function}{39}
-\contentsline {section}{\numberline {5.2}Whitening a Matrix}{41}
-\contentsline {section}{\numberline {5.3}Cholesky Decomposition}{41}
-\contentsline {section}{\numberline {5.4}4 DOF Independent Normal Distribution}{42}
+\contentsline {chapter}{\numberline {1}Introduction}{6}
+\contentsline {section}{\numberline {1.1}Deep Learning}{6}
+\contentsline {section}{\numberline {1.2}Beyond Real Numbers}{6}
+\contentsline {section}{\numberline {1.3}Outline}{7}
+\contentsline {chapter}{\numberline {2}Introduction To Convolutional Neural Networks}{8}
+\contentsline {section}{\numberline {2.1}Basic CNN Components}{8}
+\contentsline {subsection}{\numberline {2.1.1}Convolutional Layer}{9}
+\contentsline {subsection}{\numberline {2.1.2}Pooling Layer}{10}
+\contentsline {subsection}{\numberline {2.1.3}CNN Common Tasks}{11}
+\contentsline {chapter}{\numberline {3}State of the Art}{13}
+\contentsline {section}{\numberline {3.1}Activation Functions}{13}
+\contentsline {subsection}{\numberline {3.1.1}ReLU:}{14}
+\contentsline {subsection}{\numberline {3.1.2}LReLU:}{14}
+\contentsline {subsection}{\numberline {3.1.3}PReLU:}{14}
+\contentsline {subsection}{\numberline {3.1.4}ELU:}{15}
+\contentsline {subsection}{\numberline {3.1.5}PELU:}{15}
+\contentsline {section}{\numberline {3.2}Weight Initialization}{16}
+\contentsline {subsection}{\numberline {3.2.1}Glorot Initialization}{17}
+\contentsline {subsection}{\numberline {3.2.2}He Initialization}{18}
+\contentsline {section}{\numberline {3.3}Regularization}{18}
+\contentsline {subsection}{\numberline {3.3.1}Dropout}{18}
+\contentsline {subsection}{\numberline {3.3.2}Batch Normalization}{19}
+\contentsline {section}{\numberline {3.4}Architecture Improvements}{20}
+\contentsline {subsection}{\numberline {3.4.1}Network-In-Network}{20}
+\contentsline {subsection}{\numberline {3.4.2}Inception Blocks}{21}
+\contentsline {subsection}{\numberline {3.4.3}Residual Connections}{21}
+\contentsline {section}{\numberline {3.5}Conclusion}{22}
+\contentsline {chapter}{\numberline {4}Quaternions}{24}
+\contentsline {section}{\numberline {4.1}Quaternion Algebra}{24}
+\contentsline {subsection}{\numberline {4.1.1}Addition and Multiplication}{25}
+\contentsline {subsection}{\numberline {4.1.2}Conjugate, Norm, and Inverse}{26}
+\contentsline {section}{\numberline {4.2}Geometric Representation of Quaternions}{27}
+\contentsline {subsection}{\numberline {4.2.1}Complex Algebra}{27}
+\contentsline {subsection}{\numberline {4.2.2}Complex Rotation Operation}{28}
+\contentsline {subsection}{\numberline {4.2.3}Quaternion Rotation Operation}{28}
+\contentsline {section}{\numberline {4.3}Conclusion}{31}
+\contentsline {chapter}{\numberline {5}Quaternion Networks}{32}
+\contentsline {section}{\numberline {5.1}Motivation and Related Work}{32}
+\contentsline {section}{\numberline {5.2}Quaternion Network Components}{34}
+\contentsline {subsection}{\numberline {5.2.1}Quaternion Representation}{34}
+\contentsline {subsection}{\numberline {5.2.2}Quaternion Differentiability}{35}
+\contentsline {subsection}{\numberline {5.2.3}Quaternion Convolution}{35}
+\contentsline {subsection}{\numberline {5.2.4}Quaternion Batch-Normalization}{36}
+\contentsline {subsection}{\numberline {5.2.5}Quaternion Weight Initialization}{38}
+\contentsline {section}{\numberline {5.3}Experimental Results}{40}
+\contentsline {subsection}{\numberline {5.3.1}Classification}{40}
+\contentsline {subsection}{\numberline {5.3.2}Segmentation}{41}
+\contentsline {section}{\numberline {5.4}Conclusions and Proposed Research}{42}
+\contentsline {chapter}{\numberline {6}Appendix}{43}
+\contentsline {section}{\numberline {6.1}The Generalized Quaternion Chain Rule for a Real-Valued Function}{43}
+\contentsline {section}{\numberline {6.2}Whitening a Matrix}{45}
+\contentsline {section}{\numberline {6.3}Cholesky Decomposition}{45}
+\contentsline {section}{\numberline {6.4}4 DOF Independent Normal Distribution}{46}
 \vspace *{\baselineskip }
-\contentsline {chapter}{Bibliography}{42}
-\contentsline {chapter}{List of Figures}{49}
-\contentsline {chapter}{List of Tables}{50}
+\contentsline {chapter}{Bibliography}{46}
+\contentsline {chapter}{List of Figures}{53}
+\contentsline {chapter}{List of Tables}{54}
